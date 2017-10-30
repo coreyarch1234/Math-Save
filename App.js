@@ -3,6 +3,7 @@ import {
   Platform,
   StyleSheet,
   Text,
+  Button,
   View,
   Dimensions,
   NativeModules,
@@ -15,6 +16,9 @@ import ImageResizer from 'react-native-image-resizer';
 
 import RNFS from 'react-native-fs';
 
+import { StackNavigator } from 'react-navigation';
+
+//variables/constants
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
@@ -24,8 +28,8 @@ const viewHeight = Math.round(viewWidth * 0.5);
 const viewX = Math.round((width - viewWidth) / 2);
 const viewY = Math.round((height - viewHeight) / 2);
 
-
-export default class App extends Component<{}> {
+//camera
+class CameraScreen extends Component<{}> {
 
     constructor(props){
         super(props);
@@ -71,6 +75,7 @@ export default class App extends Component<{}> {
                  console.log("THE LATEX IS: ");
                  console.log(responseJson.latex);
                  var latex = responseJson.latex;
+
                  //change current latex
                  this.setState({currentLatex: latex}, function(){
                      console.log("the current state is now: " + this.state.currentLatex);
@@ -102,7 +107,39 @@ export default class App extends Component<{}> {
     }
 }
 
+//home screen
+class HomeScreen extends React.Component {
 
+    static navigationOptions = {
+        title: 'mStar' //goes on the tab bar. title is a navigation property
+    };
+
+    render() {
+        const { navigate } = this.props.navigation; //gets passed down from stack navigator
+        return(
+            <View style={styles.containerHome}>
+                <Text style={styles.homeScreenHead}>mStar</Text>
+                <Button
+                    onPress={() => navigate('Camera')} //when you tap, get sent to booknumber
+                    color='#ff5c5c'
+                    title="Continue"
+               />
+            </View>
+        )
+    }
+}
+
+const MathApp = StackNavigator({
+    Home: { screen: HomeScreen },
+    Camera: {screen: CameraScreen}
+});
+
+
+export default class App extends React.Component {
+    render() {
+        return <MathApp />;
+    }
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -110,6 +147,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
+    },
+    containerHome: {
+        flex: 1,
+        backgroundColor: '#29334D',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    homeScreenHead: {
+        fontSize: 40,
+        fontWeight: '700',
+        color: 'white',
+        marginBottom: 15
     },
     preview: {
         flex: 1,
@@ -133,6 +182,6 @@ const styles = StyleSheet.create({
         left: (width - viewWidth) / 2,
         top: (height - viewHeight) / 2,
         borderWidth: 2,
-        borderColor: "#f00",
+        borderColor: "#fff",
     }
 });
