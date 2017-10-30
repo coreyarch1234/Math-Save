@@ -24,17 +24,30 @@ const viewHeight = Math.round(viewWidth * 0.5);
 const viewX = Math.round((width - viewWidth) / 2);
 const viewY = Math.round((height - viewHeight) / 2);
 
+
 export default class App extends Component<{}> {
 
+    constructor(props){
+        super(props);
+        this.state = {
+            currentLatex: null
+        }
+    }
 
     takePicture() {
+
         this.camera.capture().then((data) => {
+
             var base64Data = data.data;
             var base64String = `data:image/jpeg;base64,${base64Data}`
             return ImageResizer.createResizedImage(base64String, 800, 200, 'JPEG', 100)
+
         }).then((response) => {
+
             return  RNFS.readFile(response.uri.substring(7), "base64")
+
         }).then((res) => {
+
             fetch('https://api.mathpix.com/v3/latex', {
                  method: 'POST',
                  headers: {
@@ -49,88 +62,77 @@ export default class App extends Component<{}> {
                  body: JSON.stringify({
                    'url':`data:text/plain;base64,${res}`
                  })
+
              }).then(response => response.json())
+
              .then((responseJson) => {
                  console.log("THE RESPONSE JSON IS: ");
-                 console.log(responseJson)
+                 console.log(responseJson);
+                 console.log("THE LATEX IS: ");
+                 console.log(responseJson.latex);
+                 var latex = responseJson.latex;
+                 //change current latex
+                 this.setState({currentLatex: latex}, function(){
+                     console.log("the current state is now: " + this.state.currentLatex);
+                 });
                  return responseJson;
-             })
+             }).catch(err => console.error(err));
+
         }).catch(err => console.error(err));
     }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Camera
-           captureTarget={Camera.constants.CaptureTarget.memory}
-           ref={(cam) => {
-             this.camera = cam;
-           }}
-           style={styles.preview}
-           aspect={Camera.constants.Aspect.fill}>
-           <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
-       </Camera>
-       <View style={styles.rectangle} />
-      </View>
-    );
-  }
+    render() {
+        return (
+          <View style={styles.container}>
+            <Text style={styles.welcome}>
+              mStar
+            </Text>
+            <Camera
+               captureTarget={Camera.constants.CaptureTarget.memory}
+               ref={(cam) => {
+                 this.camera = cam;
+               }}
+               style={styles.preview}
+               aspect={Camera.constants.Aspect.fill}>
+               <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
+           </Camera>
+           <View style={styles.rectangle} />
+          </View>
+        );
+    }
 }
 
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  preview: {
-   flex: 1,
-   justifyContent: 'flex-end',
-   alignItems: 'center',
-   height: Dimensions.get('window').height,
-   width: Dimensions.get('window').width
-  },
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    color: '#000',
-    padding: 10,
-    margin: 40
-  },
-  // rectangle: {
-  //   position: "absolute",
-  //   width: viewWidth,
-  //   height: viewHeight,
-  //   left: (width - viewWidth) / 2,
-  //   top: (height - viewHeight) / 2,
-  //   borderWidth: 2,
-  //   borderColor: "#f00",
-  // }
-  rectangle: {
-    position: "absolute",
-    width: viewWidth,
-    height: viewHeight,
-    left: (width - viewWidth) / 2,
-    top: (height - viewHeight) / 2,
-    borderWidth: 2,
-    borderColor: "#f00",
-  }
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+    },
+    preview: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        height: Dimensions.get('window').height,
+        width: Dimensions.get('window').width,
+    },
+    capture: {
+        flex: 0,
+        backgroundColor: '#fff',
+        borderRadius: 5,
+        color: '#000',
+        padding: 10,
+        margin: 40,
+    },
+    rectangle: {
+        position: "absolute",
+        width: viewWidth,
+        height: viewHeight,
+        left: (width - viewWidth) / 2,
+        top: (height - viewHeight) / 2,
+        borderWidth: 2,
+        borderColor: "#f00",
+    }
 });
-
-//'region': {'top_left_x': 3, 'top_left_y': 22, 'width': 70, 'height': 18}, captureTarget={Camera.constants.CaptureTarget.disk}
