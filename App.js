@@ -60,17 +60,41 @@ const instructions = Platform.select({
 //  .catch(err => console.error(err))
 // /Users/coreyharrilal/Library/Developer/CoreSimulator/Devices/72FF6D98-730D-459C-83FC-AB34BD1A72B4/data/Containers/Data/Application/0E7CD174-C2E2-429C-B578-55C1B1B0B810/Documents/70D54E9E-A339-4172-915B-8A12CFEFA089.jpg
 export default class App extends Component<{}> {
+
+
+    // takePicture() {
+    //     this.camera.capture().then((data) => {
+    //         return ImageResizer.createResizedImage()
+    //     }).then((response) => {
+    //         return fetch()
+    //     }).then(() => {
+    //
+    //     }).catch()
+    // }
+
+    /*
+
+    const a = fetch()
+    const b = fetch()
+    const c = fetch()
+
+    Promise.all([a,b,c]).then()
+
+    */
+
     takePicture() {
        this.camera.capture()
          .then((data) => {
              console.log("DATA START");
-             console.log(data.data);
+             console.log(data);
              var base64Data = data.data;
              console.log("DATA END");
              var base64String = `data:image/jpeg;base64,${base64Data}`
-             ImageResizer.createResizedImage(base64String, 800, 600, 'JPEG', 100)
+             ImageResizer.createResizedImage(base64String, 800, 200, 'JPEG', 100)
              .then((response) => {
+                 console.log("the resized image object is: " + response);
                  console.log("the resized image path is: " + response.uri);
+                 console.log("the resized image size is: " + response.size);
                  RNFS.readFile(response.uri.substring(7), "base64")  //substring(7) -> to remove the file://
                 .then((res) =>{
                     console.log("the base64 res from native file is: " + res);
@@ -89,7 +113,7 @@ export default class App extends Component<{}> {
                            'url':`data:text/plain;base64,${res}`
                          })
                        })
-                     .then((response) => response.json())
+                     .then(response => response.json())
                      .then((responseJson) => {
                          console.log("THE RESPONSE JSON IS: ");
                          console.log(responseJson)
