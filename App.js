@@ -17,291 +17,46 @@ import RNFS from 'react-native-fs';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
+
 const viewWidth = Math.round(width * 0.7);
 const viewHeight = Math.round(viewWidth * 0.5);
+
 const viewX = Math.round((width - viewWidth) / 2);
 const viewY = Math.round((height - viewHeight) / 2);
-console.log("whole window width is: " + width);
-console.log("whole window height is: " + height);
-console.log("viewX is: " + viewX);
-console.log("viewY is: " + viewY);
-console.log("viewWidth is: " + viewWidth);
-console.log("viewHeight is: " + viewHeight);
-console.log("Pixel: " + PixelRatio.get())
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-// fetch('https://api.mathpix.com/v3/latex', {
-//      method: 'POST',
-//      headers: {
-//        'app_id': 'corey_harrilal_students_makeschool_com',
-//        'app_key': 'ddd5a182cfbd8d0a170c',
-//        'Accept': 'application/json',
-//        'Content-Type': 'application/json'
-//      },
-//      formats: {
-//          'mathml': true
-//      },
-//      body: JSON.stringify({
-//        'url':`data:text/plain,${base64Data}`
-//      })
-//    })
-//  .then((response) => response.json())
-//  .then((responseJson) => {
-//      console.log("THE RESPONSE JSON IS: ");
-//      console.log(responseJson)
-//      return responseJson;
-//  })
-//  .catch(err => console.error(err))
-// /Users/coreyharrilal/Library/Developer/CoreSimulator/Devices/72FF6D98-730D-459C-83FC-AB34BD1A72B4/data/Containers/Data/Application/0E7CD174-C2E2-429C-B578-55C1B1B0B810/Documents/70D54E9E-A339-4172-915B-8A12CFEFA089.jpg
 export default class App extends Component<{}> {
 
 
-    // takePicture() {
-    //     this.camera.capture().then((data) => {
-    //         return ImageResizer.createResizedImage()
-    //     }).then((response) => {
-    //         return fetch()
-    //     }).then(() => {
-    //
-    //     }).catch()
-    // }
-
-    /*
-
-    const a = fetch()
-    const b = fetch()
-    const c = fetch()
-
-    Promise.all([a,b,c]).then()
-
-    */
-
     takePicture() {
-       this.camera.capture()
-         .then((data) => {
-             console.log("DATA START");
-             console.log(data);
-             var base64Data = data.data;
-             console.log("DATA END");
-             var base64String = `data:image/jpeg;base64,${base64Data}`
-             ImageResizer.createResizedImage(base64String, 800, 200, 'JPEG', 100)
-             .then((response) => {
-                 console.log("the resized image object is: " + response);
-                 console.log("the resized image path is: " + response.uri);
-                 console.log("the resized image size is: " + response.size);
-                 RNFS.readFile(response.uri.substring(7), "base64")  //substring(7) -> to remove the file://
-                .then((res) =>{
-                    console.log("the base64 res from native file is: " + res);
-                    fetch('https://api.mathpix.com/v3/latex', {
-                         method: 'POST',
-                         headers: {
-                           'app_id': 'corey_harrilal_students_makeschool_com',
-                           'app_key': 'ddd5a182cfbd8d0a170c',
-                           'Accept': 'application/json',
-                           'Content-Type': 'application/json'
-                         },
-                         formats: {
-                             'mathml': true
-                         },
-                         body: JSON.stringify({
-                           'url':`data:text/plain;base64,${res}`
-                         })
-                       })
-                     .then(response => response.json())
-                     .then((responseJson) => {
-                         console.log("THE RESPONSE JSON IS: ");
-                         console.log(responseJson)
-                         return responseJson;
-                     })
-                })
-
+        this.camera.capture().then((data) => {
+            var base64Data = data.data;
+            var base64String = `data:image/jpeg;base64,${base64Data}`
+            return ImageResizer.createResizedImage(base64String, 800, 200, 'JPEG', 100)
+        }).then((response) => {
+            return  RNFS.readFile(response.uri.substring(7), "base64")
+        }).then((res) => {
+            fetch('https://api.mathpix.com/v3/latex', {
+                 method: 'POST',
+                 headers: {
+                   'app_id': 'corey_harrilal_students_makeschool_com',
+                   'app_key': 'ddd5a182cfbd8d0a170c',
+                   'Accept': 'application/json',
+                   'Content-Type': 'application/json'
+                 },
+                 formats: {
+                     'mathml': true
+                 },
+                 body: JSON.stringify({
+                   'url':`data:text/plain;base64,${res}`
+                 })
+             }).then(response => response.json())
+             .then((responseJson) => {
+                 console.log("THE RESPONSE JSON IS: ");
+                 console.log(responseJson)
+                 return responseJson;
              })
-             .catch((err) => {
-                console.log(err);
-              // Oops, something went wrong. Check that the filename is correct and
-              // inspect err to get more details.
-            });
-            //  fetch('https://api.mathpix.com/v3/latex', {
-            //       method: 'POST',
-            //       headers: {
-            //         'app_id': 'corey_harrilal_students_makeschool_com',
-            //         'app_key': 'ddd5a182cfbd8d0a170c',
-            //         'Accept': 'application/json',
-            //         'Content-Type': 'application/json'
-            //       },
-            //       formats: {
-            //           'mathml': true
-            //       },
-            //       body: JSON.stringify({
-            //         'url':`data:text/plain;base64,${base64Data}`
-            //       })
-            //     })
-            //   .then((response) => response.json())
-            //   .then((responseJson) => {
-            //       console.log("THE RESPONSE JSON IS: ");
-            //       console.log(responseJson)
-            //       return responseJson;
-            //   })
-            //   .catch(err => console.error(err))
-            //  var path = data.path;
-            //  console.log("PATH START AND IF IT IS UNDEFINED THEN LET ME KNOW");
-            //  console.log(typeof path);
-            //  console.log("PATH END");
-            //  console.log("TESTING NEW!!!!");
-
-            //  ImageResizer.createResizedImage(resizePath, 70, 30, 'JPEG', 100)
-            //  .then((response) => {
-            //      console.log("the resized image path is: " + response.uri);
-            //      var formatPath = (response.uri.split('Caches/')[1]).split('.jpg')[0];
-            //      var readImagePath = `assets-library://asset/asset.JPG?id=${formatPath}&ext=JPG`;
-            //      console.log("the resized image path is split path: " + (response.uri.split('Caches/')[1]).split('.jpg')[0]);
-            //      console.log("the resized image size is: " + response.size);
-            //      NativeModules.ReadImageData.readImage(readImagePath, (image) => {
-            //          console.log("THE IMAGE DATA IS: ");
-            //          console.log(image);
-            //          fetch('https://api.mathpix.com/v3/latex', {
-            //               method: 'POST',
-            //               headers: {
-            //                 'app_id': 'corey_harrilal_students_makeschool_com',
-            //                 'app_key': 'ddd5a182cfbd8d0a170c',
-            //                 'Accept': 'application/json',
-            //                 'Content-Type': 'application/json'
-            //               },
-            //               formats: {
-            //                   'mathml': true
-            //               },
-            //               body: JSON.stringify({
-            //                 'url':`data:text/plain;base64,${image}`
-            //               })
-            //             })
-            //           .then((response) => response.json())
-            //           .then((responseJson) => {
-            //               console.log("THE RESPONSE JSON IS: ");
-            //               console.log(responseJson)
-            //               return responseJson;
-            //           })
-            //           .catch(err => console.error(err))
-            //      })
-            //  })
-            //  .catch((err) => {
-            //     console.log(err);
-            //   // Oops, something went wrong. Check that the filename is correct and
-            //   // inspect err to get more details.
-            // });
-            //  ImageResizer.createResizedImage(resizePath, 70, 30, 'JPEG', 100)
-            //  .then((response) => {
-            //      console.log("the resized image path is: " + response.uri);
-            //      var formatPath = (response.uri.split('Caches/')[1]).split('.jpg')[0];
-            //      var readImagePath = `assets-library://asset/asset.JPG?id=${formatPath}&ext=JPG`;
-            //      console.log("the resized image path is split path: " + (response.uri.split('Caches/')[1]).split('.jpg')[0]);
-            //      console.log("the resized image size is: " + response.size);
-            //      NativeModules.ReadImageData.readImage(readImagePath, (image) => {
-            //          console.log("THE IMAGE DATA IS: ");
-            //          console.log(image);
-            //          fetch('https://api.mathpix.com/v3/latex', {
-            //               method: 'POST',
-            //               headers: {
-            //                 'app_id': 'corey_harrilal_students_makeschool_com',
-            //                 'app_key': 'ddd5a182cfbd8d0a170c',
-            //                 'Accept': 'application/json',
-            //                 'Content-Type': 'application/json'
-            //               },
-            //               formats: {
-            //                   'mathml': true
-            //               },
-            //               body: JSON.stringify({
-            //                 'url':`data:text/plain;base64,${image}`
-            //               })
-            //             })
-            //           .then((response) => response.json())
-            //           .then((responseJson) => {
-            //               console.log("THE RESPONSE JSON IS: ");
-            //               console.log(responseJson)
-            //               return responseJson;
-            //           })
-            //           .catch(err => console.error(err))
-            //      })
-            //  })
-            //  .catch((err) => {
-            //     console.log(err);
-            //   // Oops, something went wrong. Check that the filename is correct and
-            //   // inspect err to get more details.
-            // });
-            //  ImageResizer.createResizedImage(path, 70, 30, 'JPEG', 100).then((response) => {
-            //      console.log("the resized image path is: " + response.uri);
-            //      console.log("the resized image size is: " + response.size);
-            //
-            //      NativeModules.ReadImageData.readImage(response.uri, (image) => {
-            //          console.log("THE IMAGE DATA IS: ");
-            //          console.log(image);
-            //          fetch('https://api.mathpix.com/v3/latex', {
-            //               method: 'POST',
-            //               headers: {
-            //                 'app_id': 'corey_harrilal_students_makeschool_com',
-            //                 'app_key': 'ddd5a182cfbd8d0a170c',
-            //                 'Accept': 'application/json',
-            //                 'Content-Type': 'application/json'
-            //               },
-            //               formats: {
-            //                   'mathml': true
-            //               },
-            //               body: JSON.stringify({
-            //                 'url':`data:text/plain;base64,${image}`
-            //               })
-            //             })
-            //           .then((response) => response.json())
-            //           .then((responseJson) => {
-            //               console.log("THE RESPONSE JSON IS: ");
-            //               console.log(responseJson)
-            //               return responseJson;
-            //           })
-            //           .catch(err => console.error(err))
-            //      })
-            //   // response.uri is the URI of the new image that can now be displayed, uploaded...
-            //   // response.path is the path of the new image
-            //   // response.name is the name of the new image with the extension
-            //   // response.size is the size of the new image
-            // }).catch((err) => {
-            //     console.log(err);
-            //   // Oops, something went wrong. Check that the filename is correct and
-            //   // inspect err to get more details.
-            // });
-            //  NativeModules.ReadImageData.readImage(path, (image) => {
-            //      console.log("THE IMAGE DATA IS: ");
-            //      console.log(image);
-            //      fetch('https://api.mathpix.com/v3/latex', {
-            //           method: 'POST',
-            //           headers: {
-            //             'app_id': 'corey_harrilal_students_makeschool_com',
-            //             'app_key': 'ddd5a182cfbd8d0a170c',
-            //             'Accept': 'application/json',
-            //             'Content-Type': 'application/json'
-            //           },
-            //           formats: {
-            //               'mathml': true
-            //           },
-            //           body: JSON.stringify({
-            //             'url':`data:text/plain;base64,${image}`
-            //           })
-            //         })
-            //       .then((response) => response.json())
-            //       .then((responseJson) => {
-            //           console.log("THE RESPONSE JSON IS: ");
-            //           console.log(responseJson)
-            //           return responseJson;
-            //       })
-            //       .catch(err => console.error(err))
-            //  })
-
-         })
-         .catch(err => console.error(err));
-     }
+        }).catch(err => console.error(err));
+    }
 
   render() {
     return (
