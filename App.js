@@ -103,9 +103,7 @@ class CameraScreen extends Component<{}> {
     render() {
         return (
           <View style={styles.container}>
-            <Text style={styles.welcome}>
-              cometMath
-            </Text>
+            
             <Camera
                captureTarget={Camera.constants.CaptureTarget.memory}
                ref={(cam) => {
