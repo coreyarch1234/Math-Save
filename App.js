@@ -5,6 +5,7 @@ import {
   Text,
   Button,
   View,
+  Image,
   Dimensions,
   NativeModules,
   PixelRatio
@@ -39,6 +40,17 @@ class CameraScreen extends Component<{}> {
             currentLatex: null
         }
     }
+
+    static navigationOptions = {
+        title: 'cometMath', //goes on the tab bar. title is a navigation property
+        tabBarLabel: 'Camera',
+        tabBarIcon: ({tintColor}) => (
+            <Image
+                source={require('./images/camera.png')}
+                style={[styles.icon, {tintColor: tintColor}]}
+            />
+        )
+    };
 
     takePicture() {
 
@@ -92,7 +104,7 @@ class CameraScreen extends Component<{}> {
         return (
           <View style={styles.container}>
             <Text style={styles.welcome}>
-              mStar
+              cometMath
             </Text>
             <Camera
                captureTarget={Camera.constants.CaptureTarget.memory}
@@ -101,7 +113,11 @@ class CameraScreen extends Component<{}> {
                }}
                style={styles.preview}
                aspect={Camera.constants.Aspect.fill}>
-               <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
+               <Image
+                   source={require('./images/take-picture.png')}
+                   onPress={this.takePicture.bind(this)}
+                   style={[styles.capture]}
+               />
            </Camera>
            <View style={styles.rectangle} />
           </View>
@@ -111,55 +127,49 @@ class CameraScreen extends Component<{}> {
 
 //home screen
 class HomeScreen extends React.Component {
-
     static navigationOptions = {
-        title: 'mStar' //goes on the tab bar. title is a navigation property
+        title: 'mStar', //goes on the tab bar. title is a navigation property
+        tabBarLabel: 'Problems',
+        tabBarIcon: ({tintColor}) => (
+            <Image
+                source={require('./images/home.png')}
+                style={[styles.icon, {tintColor: tintColor}]}
+            />
+        )
     };
 
     render() {
-        const { navigate } = this.props.navigation; //gets passed down from stack navigator
+        // const { navigate } = this.props.navigation; //gets passed down from stack navigator
         return(
             <View style={styles.containerHome}>
-                <Text style={styles.homeScreenHead}>mStar</Text>
-                <Button
-                    onPress={() => navigate('Camera')} //when you tap, get sent to booknumber
-                    color='#ff5c5c'
-                    title="Continue"
-               />
+                <Image
+                    source={require('./images/comet.png')}
+                    style={styles.logo}
+                />
+
             </View>
         )
     }
 }
-
-// const MathApp = StackNavigator({
-//     Home: { screen: HomeScreen },
-//     Camera: {screen: CameraScreen}
-// });
-
+// <Button
+//     onPress={() => navigate('Camera')} //when you tap, get sent to booknumber
+//     color='#ff5c5c'
+//     title="Continue"
+// />
 const MathTabs = TabNavigator({
     Home: {
-        screen: HomeScreen,
-        tabBarLabel: 'Home',
-        tabBarIcon: ({tintColor}) => (
-            <Icon
-                name={'list'}
-                size={35}
-                style={{color: tintColor}}
-            />
-        )
+        screen: HomeScreen
     },
     Camera: {
-        screen: CameraScreen,
-        tabBarLabel: 'Camera',
-        tabBarIcon: ({tintColor}) => (
-            <Icon
-                name={'account-circle'}
-                size={35}
-                style={{color: tintColor}}
-            />
-        )
-    }
-
+        screen: CameraScreen
+    },
+},
+{
+    tabBarPosition: 'bottom',
+    animationEnabled: true,
+    tabBarOptions: {
+      activeTintColor: '#e91e63',
+    },
 });
 
 
@@ -174,11 +184,11 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#e67e22',
     },
     containerHome: {
         flex: 1,
-        backgroundColor: '#29334D',
+        backgroundColor: '#3498db',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -188,6 +198,14 @@ const styles = StyleSheet.create({
         color: 'white',
         marginBottom: 15
     },
+    icon: {
+        width: 26,
+        height: 26,
+    },
+    logo: {
+        width: 52,
+        height: 52,
+    },
     preview: {
         flex: 1,
         justifyContent: 'flex-end',
@@ -196,11 +214,10 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
     },
     capture: {
-        flex: 0,
-        backgroundColor: '#fff',
+        width: 60,
+        height: 60,
         borderRadius: 5,
-        color: '#000',
-        padding: 10,
+        bottom: 50,
         margin: 40,
     },
     rectangle: {
@@ -213,7 +230,7 @@ const styles = StyleSheet.create({
         borderColor: "#fff",
     }
 });
-
+//
 // navigationOptions: {
 //     tabBar: {
 //         label: 'Camera',
