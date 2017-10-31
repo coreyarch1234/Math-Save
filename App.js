@@ -16,7 +16,9 @@ import ImageResizer from 'react-native-image-resizer';
 
 import RNFS from 'react-native-fs';
 
-import { StackNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation';
+
+import { Icon } from 'react-native-elements';
 
 //variables/constants
 const width = Dimensions.get('window').width;
@@ -129,15 +131,41 @@ class HomeScreen extends React.Component {
     }
 }
 
-const MathApp = StackNavigator({
-    Home: { screen: HomeScreen },
-    Camera: {screen: CameraScreen}
+// const MathApp = StackNavigator({
+//     Home: { screen: HomeScreen },
+//     Camera: {screen: CameraScreen}
+// });
+
+const MathTabs = TabNavigator({
+    Home: {
+        screen: HomeScreen,
+        tabBarLabel: 'Home',
+        tabBarIcon: ({tintColor}) => (
+            <Icon
+                name={'list'}
+                size={35}
+                style={{color: tintColor}}
+            />
+        )
+    },
+    Camera: {
+        screen: CameraScreen,
+        tabBarLabel: 'Camera',
+        tabBarIcon: ({tintColor}) => (
+            <Icon
+                name={'account-circle'}
+                size={35}
+                style={{color: tintColor}}
+            />
+        )
+    }
+
 });
 
 
 export default class App extends React.Component {
     render() {
-        return <MathApp />;
+        return <MathTabs />;
     }
 }
 
@@ -185,3 +213,10 @@ const styles = StyleSheet.create({
         borderColor: "#fff",
     }
 });
+
+// navigationOptions: {
+//     tabBar: {
+//         label: 'Camera',
+//         icon: ({ tintColor }) => <Icon name='account-circle' size={35} color={tintColor} />
+//     }
+// },
