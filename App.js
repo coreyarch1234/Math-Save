@@ -5,6 +5,7 @@ import {
   Text,
   Button,
   View,
+  TouchableHighlight,
   Image,
   Dimensions,
   NativeModules,
@@ -103,7 +104,7 @@ class CameraScreen extends Component<{}> {
     render() {
         return (
           <View style={styles.container}>
-            
+
             <Camera
                captureTarget={Camera.constants.CaptureTarget.memory}
                ref={(cam) => {
@@ -111,11 +112,12 @@ class CameraScreen extends Component<{}> {
                }}
                style={styles.preview}
                aspect={Camera.constants.Aspect.fill}>
-               <Image
-                   source={require('./images/take-picture.png')}
-                   onPress={this.takePicture.bind(this)}
-                   style={[styles.capture]}
-               />
+               <TouchableHighlight onPress={this.takePicture.bind(this)} >
+                  <Image
+                      source={require('./images/take-picture.png')}
+                      style={[styles.capture]}
+                  />
+              </TouchableHighlight>
            </Camera>
            <View style={styles.rectangle} />
           </View>
