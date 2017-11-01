@@ -12,13 +12,15 @@ import {
   PixelRatio
 } from 'react-native';
 
+
+// <Image
+//     source={require('../images/home.png')}
+//     style={{width: 25, height: 25}}
+// />
 //home screen
 export default class HomeScreen extends Component {
     static navigationOptions = {
-        title: <Image
-            source={require('../images/home.png')}
-            style={{width: 25, height: 25}}
-        />,
+        title: <Text style={{fontSize: 20, fontFamily: 'Avenir-Black', fontWeight: '400'}}>MathPath</Text>,
         tabBarLabel: 'Problems',
         tabBarIcon: ({tintColor}) => (
             <Image

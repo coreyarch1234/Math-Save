@@ -48,6 +48,7 @@ export default class CameraScreen extends Component<{}> {
 
     static navigationOptions = {
         title: 'Camera',
+        headerTitleStyle: {fontSize: 20, fontFamily: 'Avenir-Black', fontWeight: '400' },
         tabBarLabel: 'Camera',
         tabBarIcon: ({tintColor}) => (
             <Image
@@ -101,7 +102,7 @@ export default class CameraScreen extends Component<{}> {
                      //navigate to problem  info fields
                      console.log('test to see if you can print navigate here: ');
                      console.log(this.move);
-                     this.move.navigate('Problem');
+                     this.move.navigate('Problem', {latex: this.state.currentLatex});
 
                  });
                  return responseJson;

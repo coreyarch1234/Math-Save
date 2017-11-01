@@ -9,7 +9,8 @@ import {
   Image,
   Dimensions,
   NativeModules,
-  PixelRatio
+  PixelRatio,
+  KeyboardAvoidingView
 } from 'react-native';
 
 //Problem info
@@ -18,10 +19,7 @@ import ProblemInfo from './problem-info';
 //next to do is the same for difficulty and category. And in return setstate function, make heroku api call
 export default class Problem extends Component {
     static navigationOptions = {
-        title: <Image
-            source={require('../images/document.png')}
-            style={{width: 25, height: 25}}
-        />
+        title: <Text style={{fontSize: 20, fontFamily: 'Avenir-Black', fontWeight: '400'}}>Add Detail</Text>
     }
 
     constructor(props){
@@ -30,25 +28,38 @@ export default class Problem extends Component {
             title: null,
             category: null
         }
+        this.latex = this.props.navigation.state.params.latex; //contains the latex
+        console.log('LATEX SAVED AND PASSED IN PROPS FROM CAMERA: ');
+        // console.log(this.latex);
+        console.log(this.props.navigation);
+        console.log(this.props.navigation.state);
+        console.log(this.props.navigation.state.params);
+        console.log(this.props.navigation.state.params.latex);
     }
 
     render() {
         console.log(this.state.title);
         return (
-            <View style={styles.containerHome}>
-                <ProblemInfo
-                    onSubmit = {(title, category) => {
-                        this.setState({title: title, category: category}, function() {
-                            //make api call to save to mongo
-                            console.log('successfuly received title to be saved: ');
-                            console.log(this.state.title);
-                            console.log('successfuly received category to be saved: ');
-                            console.log(this.state.category);
-                        })
-                    }}
+            <KeyboardAvoidingView
+             behavior="padding"
+             style={styles.containerHome}>
+                <View style={{width: '100%'}}>
+                    <ProblemInfo
+                        onSubmit = {(title, category) => {
+                            this.setState({title: title, category: category}, function() {
+                                //make api call to save to mongo
+                                console.log('successfuly received title to be saved: ');
+                                console.log(this.state.title);
+                                console.log('successfuly received category to be saved: ');
+                                console.log(this.state.category);
+                                console.log('successfuly received latex to be saved: ');
+                                console.log(this.latex);
+                            })
+                        }}
 
-                />
-            </View>
+                    />
+                </View>
+            </KeyboardAvoidingView>
         )
     }
 }
@@ -58,6 +69,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
 });
