@@ -22,6 +22,9 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 
 import { Icon } from 'react-native-elements';
 
+//Problem info
+import ProblemInfo from './problem-info';
+
 //variables/constants
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -40,6 +43,9 @@ class CameraScreen extends Component<{}> {
         this.state = {
             currentLatex: null
         }
+        this.move = this.props.navigation;
+        console.log('the navigate object is: ');
+        console.log(this.move.navigate);
     }
 
     static navigationOptions = {
@@ -94,6 +100,11 @@ class CameraScreen extends Component<{}> {
                  //change current latex
                  this.setState({currentLatex: latex}, function(){
                      console.log("the current state is now: " + this.state.currentLatex);
+                     //navigate to problem  info fields
+                     console.log('test to see if you can print navigate here: ');
+                     console.log(this.move);
+                     this.move.navigate('Home');
+
                  });
                  return responseJson;
              }).catch(err => console.error(err));
@@ -230,10 +241,3 @@ const styles = StyleSheet.create({
         borderColor: "#fff",
     }
 });
-//
-// navigationOptions: {
-//     tabBar: {
-//         label: 'Camera',
-//         icon: ({ tintColor }) => <Icon name='account-circle' size={35} color={tintColor} />
-//     }
-// },
