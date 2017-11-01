@@ -1,4 +1,18 @@
-import React, { Component } from 'react';
+import React,  { Component } from 'react';
+// var React = require('react');
+// var Component  = require('react');
+// var {
+//   Platform,
+//   StyleSheet,
+//   Text,
+//   Button,
+//   View,
+//   TouchableHighlight,
+//   Image,
+//   Dimensions,
+//   NativeModules,
+//   PixelRatio
+// } = require('react-native');
 import {
   Platform,
   StyleSheet,
@@ -13,14 +27,19 @@ import {
 } from 'react-native';
 
 import Camera from 'react-native-camera';
+// var Camera = require('react-native-camera');
 
 import ImageResizer from 'react-native-image-resizer';
+// var ImageResizer = require('react-native-image-resizer');
 
 import RNFS from 'react-native-fs';
+// var RNFS = require('react-native-fs');
 
 import { TabNavigator, StackNavigator } from 'react-navigation';
+// var { TabNavigator, StackNavigator } = require('react-navigation');
 
 import { Icon } from 'react-native-elements';
+// var { Icon } = require('react-native-elements');
 
 //variables/constants
 const width = Dimensions.get('window').width;
