@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button} from 'react-native';
 import { FormLabel, FormInput } from 'react-native-elements'
 
-export default class Problem extends React.Component {
+export default class ProblemInfo extends React.Component {
 
     constructor(props){
         super(props)
@@ -16,8 +16,15 @@ export default class Problem extends React.Component {
         return (
             <View>
                 <FormLabel>Title</FormLabel>
-                <FormInput onChangeText={(title) => console.log('title is being edited: ' + title)}/>
-                <FormValidationMessage>Enter a valid title</FormValidationMessage>
+                <FormInput onChangeText={(title) => {
+                    this.setState({title: title});
+                    console.log('title is being edited: ' + title)
+                }}/>
+                <Button
+                        onPress={() => this.props.onSubmit(this.state.title)}
+                        color='#ff5c5c'
+                        title="Submit"
+                />
             </View>
         )
     }

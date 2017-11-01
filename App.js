@@ -35,7 +35,7 @@ const viewHeight = Math.round(viewWidth * 0.5);
 const viewX = Math.round((width - viewWidth) / 2);
 const viewY = Math.round((height - viewHeight) / 2);
 
-//camera
+//camera screen
 class CameraScreen extends Component<{}> {
 
     constructor(props){
@@ -103,7 +103,7 @@ class CameraScreen extends Component<{}> {
                      //navigate to problem  info fields
                      console.log('test to see if you can print navigate here: ');
                      console.log(this.move);
-                     this.move.navigate('Home');
+                     this.move.navigate('Problem');
 
                  });
                  return responseJson;
@@ -137,9 +137,9 @@ class CameraScreen extends Component<{}> {
 }
 
 //home screen
-class HomeScreen extends React.Component {
+class HomeScreen extends Component {
     static navigationOptions = {
-        title: 'mStar', //goes on the tab bar. title is a navigation property
+        title: 'cometMath', //goes on the tab bar. title is a navigation property
         tabBarLabel: 'Problems',
         tabBarIcon: ({tintColor}) => (
             <Image
@@ -162,11 +162,38 @@ class HomeScreen extends React.Component {
         )
     }
 }
-// <Button
-//     onPress={() => navigate('Camera')} //when you tap, get sent to booknumber
-//     color='#ff5c5c'
-//     title="Continue"
-// />
+
+class Problem extends Component {
+    static navigationOptions = {
+        title: 'Problem'
+    }
+
+    constructor(props){
+        super(props);
+        this.state = {
+            title: null
+        }
+    }
+
+    render() {
+        console.log(this.state.title);
+        return (
+            <View style={styles.containerHome}>
+                <ProblemInfo
+                    onSubmit = {(title) => {
+                        this.setState({title: title}, function() {
+                            //make api call to save to mongo
+                            console.log('successfuly received title to be saved: ');
+                            console.log(this.state.title);
+                        })
+                    }}
+
+                />
+            </View>
+        )
+    }
+}
+
 const MathTabs = TabNavigator({
     Home: {
         screen: HomeScreen
@@ -183,10 +210,15 @@ const MathTabs = TabNavigator({
     },
 });
 
+const MathApp = StackNavigator({
+  MathContainer: { screen: MathTabs },
+  Problem: {screen: Problem}
+});
+
 
 export default class App extends React.Component {
     render() {
-        return <MathTabs />;
+        return <MathApp />;
     }
 }
 
