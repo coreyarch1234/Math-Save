@@ -12,11 +12,13 @@ import {
   PixelRatio
 } from 'react-native';
 
-
 //home screen
 export default class HomeScreen extends Component {
     static navigationOptions = {
-        title: 'cometMath', //goes on the tab bar. title is a navigation property
+        title: <Image
+            source={require('../images/home.png')}
+            style={{width: 25, height: 25}}
+        />,
         tabBarLabel: 'Problems',
         tabBarIcon: ({tintColor}) => (
             <Image
@@ -39,6 +41,11 @@ export default class HomeScreen extends Component {
         )
     }
 }
+
+// <Image
+//     source={require('../images/comet.png')}
+//     style={styles.logo}
+// />
 
 const styles = StyleSheet.create({
     containerHome: {

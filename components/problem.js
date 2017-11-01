@@ -18,13 +18,17 @@ import ProblemInfo from './problem-info';
 //next to do is the same for difficulty and category. And in return setstate function, make heroku api call
 export default class Problem extends Component {
     static navigationOptions = {
-        title: 'Problem'
+        title: <Image
+            source={require('../images/document.png')}
+            style={{width: 25, height: 25}}
+        />
     }
 
     constructor(props){
         super(props);
         this.state = {
-            title: null
+            title: null,
+            category: null
         }
     }
 
@@ -33,11 +37,13 @@ export default class Problem extends Component {
         return (
             <View style={styles.containerHome}>
                 <ProblemInfo
-                    onSubmit = {(title) => {
-                        this.setState({title: title}, function() {
+                    onSubmit = {(title, category) => {
+                        this.setState({title: title, category: category}, function() {
                             //make api call to save to mongo
                             console.log('successfuly received title to be saved: ');
                             console.log(this.state.title);
+                            console.log('successfuly received category to be saved: ');
+                            console.log(this.state.category);
                         })
                     }}
 
@@ -50,7 +56,7 @@ export default class Problem extends Component {
 const styles = StyleSheet.create({
     containerHome: {
         flex: 1,
-        backgroundColor: '#3498db',
+        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },

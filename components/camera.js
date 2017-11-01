@@ -47,7 +47,7 @@ export default class CameraScreen extends Component<{}> {
     }
 
     static navigationOptions = {
-        title: 'cometMath', //goes on the tab bar. title is a navigation property
+        title: 'Camera',
         tabBarLabel: 'Camera',
         tabBarIcon: ({tintColor}) => (
             <Image
@@ -123,7 +123,7 @@ export default class CameraScreen extends Component<{}> {
                aspect={Camera.constants.Aspect.fill}>
                <TouchableHighlight onPress={this.takePicture.bind(this)} >
                   <Image
-                      source={require('../images/take-picture.png')}
+                      source={require('../images/circle.png')}
                       style={[styles.capture]}
                   />
               </TouchableHighlight>
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
         width: viewWidth,
         height: viewHeight,
         left: (width - viewWidth) / 2,
-        top: (height - viewHeight) / 2,
+        top: (height - viewHeight) * 0.4,
         borderWidth: 2,
         borderColor: "#fff",
     }
