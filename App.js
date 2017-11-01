@@ -22,178 +22,14 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 
 import { Icon } from 'react-native-elements';
 
-//Problem info
-import ProblemInfo from './problem-info';
+//Camera screen
+import CameraScreen from './components/camera';
 
-//variables/constants
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
+import HomeScreen from './components/home';
 
-const viewWidth = Math.round(width * 0.7);
-const viewHeight = Math.round(viewWidth * 0.5);
+import Problem from './components/problem';
 
-const viewX = Math.round((width - viewWidth) / 2);
-const viewY = Math.round((height - viewHeight) / 2);
-
-//camera screen
-class CameraScreen extends Component<{}> {
-
-    constructor(props){
-        super(props);
-        this.state = {
-            currentLatex: null
-        }
-        this.move = this.props.navigation;
-        console.log('the navigate object is: ');
-        console.log(this.move.navigate);
-    }
-
-    static navigationOptions = {
-        title: 'cometMath', //goes on the tab bar. title is a navigation property
-        tabBarLabel: 'Camera',
-        tabBarIcon: ({tintColor}) => (
-            <Image
-                source={require('./images/camera.png')}
-                style={[styles.icon, {tintColor: tintColor}]}
-            />
-        )
-    };
-
-    takePicture() {
-
-        this.camera.capture().then((data) => {
-
-            var base64Data = data.data;
-            var base64String = `data:image/jpeg;base64,${base64Data}`
-            return ImageResizer.createResizedImage(base64String, 800, 200, 'JPEG', 100)
-
-        }).then((response) => {
-
-            return  RNFS.readFile(response.uri.substring(7), "base64")
-
-        }).then((res) => {
-
-            fetch('https://api.mathpix.com/v3/latex', {
-                 method: 'POST',
-                 headers: {
-                   'app_id': 'corey_harrilal_students_makeschool_com',
-                   'app_key': 'ddd5a182cfbd8d0a170c',
-                   'Accept': 'application/json',
-                   'Content-Type': 'application/json'
-                 },
-                 formats: {
-                     'mathml': true
-                 },
-                 body: JSON.stringify({
-                   'url':`data:text/plain;base64,${res}`
-                 })
-
-             }).then(response => response.json())
-
-             .then((responseJson) => {
-                 console.log("THE RESPONSE JSON IS: ");
-                 console.log(responseJson);
-                 console.log("THE LATEX IS: ");
-                 console.log(responseJson.latex);
-                 var latex = responseJson.latex;
-
-                 //change current latex
-                 this.setState({currentLatex: latex}, function(){
-                     console.log("the current state is now: " + this.state.currentLatex);
-                     //navigate to problem  info fields
-                     console.log('test to see if you can print navigate here: ');
-                     console.log(this.move);
-                     this.move.navigate('Problem');
-
-                 });
-                 return responseJson;
-             }).catch(err => console.error(err));
-
-        }).catch(err => console.error(err));
-    }
-
-    render() {
-        return (
-          <View style={styles.container}>
-
-            <Camera
-               captureTarget={Camera.constants.CaptureTarget.memory}
-               ref={(cam) => {
-                 this.camera = cam;
-               }}
-               style={styles.preview}
-               aspect={Camera.constants.Aspect.fill}>
-               <TouchableHighlight onPress={this.takePicture.bind(this)} >
-                  <Image
-                      source={require('./images/take-picture.png')}
-                      style={[styles.capture]}
-                  />
-              </TouchableHighlight>
-           </Camera>
-           <View style={styles.rectangle} />
-          </View>
-        );
-    }
-}
-
-//home screen
-class HomeScreen extends Component {
-    static navigationOptions = {
-        title: 'cometMath', //goes on the tab bar. title is a navigation property
-        tabBarLabel: 'Problems',
-        tabBarIcon: ({tintColor}) => (
-            <Image
-                source={require('./images/home.png')}
-                style={[styles.icon, {tintColor: tintColor}]}
-            />
-        )
-    };
-
-    render() {
-        // const { navigate } = this.props.navigation; //gets passed down from stack navigator
-        return(
-            <View style={styles.containerHome}>
-                <Image
-                    source={require('./images/comet.png')}
-                    style={styles.logo}
-                />
-
-            </View>
-        )
-    }
-}
-
-class Problem extends Component {
-    static navigationOptions = {
-        title: 'Problem'
-    }
-
-    constructor(props){
-        super(props);
-        this.state = {
-            title: null
-        }
-    }
-
-    render() {
-        console.log(this.state.title);
-        return (
-            <View style={styles.containerHome}>
-                <ProblemInfo
-                    onSubmit = {(title) => {
-                        this.setState({title: title}, function() {
-                            //make api call to save to mongo
-                            console.log('successfuly received title to be saved: ');
-                            console.log(this.state.title);
-                        })
-                    }}
-
-                />
-            </View>
-        )
-    }
-}
-
+//Navigators
 const MathTabs = TabNavigator({
     Home: {
         screen: HomeScreen
@@ -216,6 +52,7 @@ const MathApp = StackNavigator({
 });
 
 
+//Main app
 export default class App extends React.Component {
     render() {
         return <MathApp />;
@@ -235,12 +72,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    homeScreenHead: {
-        fontSize: 40,
-        fontWeight: '700',
-        color: 'white',
-        marginBottom: 15
-    },
     icon: {
         width: 26,
         height: 26,
@@ -249,27 +80,5 @@ const styles = StyleSheet.create({
         width: 52,
         height: 52,
     },
-    preview: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        height: Dimensions.get('window').height,
-        width: Dimensions.get('window').width,
-    },
-    capture: {
-        width: 60,
-        height: 60,
-        borderRadius: 5,
-        bottom: 50,
-        margin: 40,
-    },
-    rectangle: {
-        position: "absolute",
-        width: viewWidth,
-        height: viewHeight,
-        left: (width - viewWidth) / 2,
-        top: (height - viewHeight) / 2,
-        borderWidth: 2,
-        borderColor: "#fff",
-    }
+
 });
