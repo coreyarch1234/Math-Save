@@ -66,7 +66,6 @@ export default class Problem extends Component {
                                     latex: this.latex
                                   })
                                 }).then(response => response.json())
-
                                 .then((responseJson) => {
                                     console.log('THE RESPONSE FROM THE SERVER IS: ');
                                     console.log(responseJson);
