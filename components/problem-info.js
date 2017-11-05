@@ -10,30 +10,30 @@ export default class ProblemInfo extends React.Component {
         super(props)
         this.state = {
             title: '',
-            category: ''
+            topic: ''
         }
     }
     render() {
         return (
             <View>
                 <View style={styles.title}>
-                    <FormLabel>Title</FormLabel>
+                    <FormLabel>Title (class, midterm)</FormLabel>
                     <FormInput onChangeText={(title) => {
                         this.setState({title: title});
                         console.log('title is being edited: ' + title);
                     }}/>
                 </View>
-                <View style={styles.category}>
-                    <FormLabel>Category</FormLabel>
-                    <FormInput onChangeText={(category) => {
-                        this.setState({category: category});
-                        console.log('category is being edited: ' + category);
+                <View style={styles.topic}>
+                    <FormLabel>Topic</FormLabel>
+                    <FormInput onChangeText={(topic) => {
+                        this.setState({topic: topic});
+                        console.log('topic is being edited: ' + topic);
                     }}/>
                 </View>
                 <Button
                     style={styles.button}
                     textStyle={{fontSize: 18}}
-                    onPress={() => this.props.onSubmit(this.state.title, this.state.category)}>
+                    onPress={() => this.props.onSubmit(this.state.title, this.state.topic)}>
                     <Text style={styles.buttonText}>Save</Text>
                 </Button>
             </View>
@@ -50,17 +50,17 @@ export default class ProblemInfo extends React.Component {
 //             console.log('title is being edited: ' + title);
 //         }}/>
 //     </View>
-//     <View style={styles.category}>
-//         <FormLabel>Category</FormLabel>
-//         <FormInput onChangeText={(category) => {
-//             this.setState({category: category});
-//             console.log('category is being edited: ' + category);
+//     <View style={styles.topic}>
+//         <FormLabel>topic</FormLabel>
+//         <FormInput onChangeText={(topic) => {
+//             this.setState({topic: topic});
+//             console.log('topic is being edited: ' + topic);
 //         }}/>
 //     </View>
 //     <Button
 //         style={styles.button}
 //         textStyle={{fontSize: 18}}
-//         onPress={() => this.props.onSubmit(this.state.title, this.state.category)}>
+//         onPress={() => this.props.onSubmit(this.state.title, this.state.topic)}>
 //         <Text style={styles.buttonText}>Save</Text>
 //     </Button>
 // </KeyboardAvoidingView>
@@ -70,7 +70,7 @@ const styles = {
     title: {
         bottom: 10,
     },
-    category: {
+    topic: {
         top: 10,
     },
     buttonText: {

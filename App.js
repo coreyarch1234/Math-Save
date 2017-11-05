@@ -21,6 +21,7 @@ import HomeScreen from './components/home';
 
 import Problem from './components/problem';
 
+import ProblemView from './components/problem-view';
 //Navigators
 
 //Tab navigator
@@ -43,7 +44,8 @@ const MathTabs = TabNavigator({
 //Stack navigator
 const MathApp = StackNavigator({
   MathContainer: { screen: MathTabs },
-  Problem: {screen: Problem}
+  Problem: {screen: Problem},
+  ProblemView: {screen: ProblemView}
 });
 
 
