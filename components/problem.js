@@ -23,7 +23,7 @@ import ProblemView from './problem-view';
 // <Text style={{fontSize: 20, fontFamily: 'Avenir-Black', fontWeight: '400'}}>Add Detail</Text>
 export default class Problem extends Component {
     static navigationOptions = {
-        title: 'Add Detail'
+        title: 'Addddd Detail'
     }
 
     constructor(props){
@@ -69,13 +69,15 @@ export default class Problem extends Component {
                                   body: JSON.stringify({
                                     title: this.state.title,
                                     topic: this.state.topic,
-                                    latex: this.latex
+                                    // latex: this.latex
+                                    latex: 'c = \\pm\\sqrt{a^2 + b^2}'
                                 })
                                 }).then(response => response.json())
                                 .then((responseJson) => {
                                     console.log('THE RESPONSE FROM THE SERVER IS BUT HTML: ');
                                     console.log(responseJson);
-                                    // this.move.navigate('ProblemView', {htmlLatex: responseJson.html});
+                                    this.move.navigate('ProblemView', {htmlLatex: responseJson.html});
+                                    // this.move.navigate('ProblemView');
                                 }).catch(err => console.error(err));
                             })
                         }}

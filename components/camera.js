@@ -83,7 +83,7 @@ export default class CameraScreen extends Component<{}> {
                  formats: {
                      'mathml': true
                  },
-                 ocr: ["math", "text"],
+                 ocr: ["math"],
                  body: JSON.stringify({
                    'url':`data:text/plain;base64,${res}`
                  })
