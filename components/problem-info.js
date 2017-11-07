@@ -40,30 +40,6 @@ export default class ProblemInfo extends React.Component {
         )
     }
 }
-// <KeyboardAvoidingView
-//  behavior="padding"
-//  style={{width:'100%'}}>
-//     <View style={styles.title}>
-//         <FormLabel>Title</FormLabel>
-//         <FormInput onChangeText={(title) => {
-//             this.setState({title: title});
-//             console.log('title is being edited: ' + title);
-//         }}/>
-//     </View>
-//     <View style={styles.topic}>
-//         <FormLabel>topic</FormLabel>
-//         <FormInput onChangeText={(topic) => {
-//             this.setState({topic: topic});
-//             console.log('topic is being edited: ' + topic);
-//         }}/>
-//     </View>
-//     <Button
-//         style={styles.button}
-//         textStyle={{fontSize: 18}}
-//         onPress={() => this.props.onSubmit(this.state.title, this.state.topic)}>
-//         <Text style={styles.buttonText}>Save</Text>
-//     </Button>
-// </KeyboardAvoidingView>
 
 
 const styles = {

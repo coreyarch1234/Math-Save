@@ -23,7 +23,7 @@ module.exports = (title, topic, latex) => {
                 font-family: 'Avenir-Black';
             }
             .heading-container{
-                height: 100%;
+                height: 50%;
                 width: 100%;
                 position: absolute;
 
@@ -32,7 +32,7 @@ module.exports = (title, topic, latex) => {
                 position: relative;
                 text-align: center;
                 top: 10%;
-                padding-bottom: 2em;
+                padding-bottom: 4em;
                 font-weight: 700;
                 font-size: 3em;
                 color: black;
@@ -42,7 +42,7 @@ module.exports = (title, topic, latex) => {
                 text-align: center;
                 top: 5%;
                 font-weight: 400;
-                font-size: 2.2em;
+                font-size: 3em;
             }
             #topic{
                 position: relative;
@@ -51,7 +51,7 @@ module.exports = (title, topic, latex) => {
                 padding-bottom: 2em;
                 font-weight: lighter;
                 font-style: italic;
-                font-size: 1.8em;
+                font-size: 2.5em;
                 color: black;
             }
         </style>

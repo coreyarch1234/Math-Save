@@ -20,10 +20,10 @@ import ProblemInfo from './problem-info';
 import ProblemView from './problem-view';
 
 //next to do is the same for difficulty and topic. And in return setstate function, make heroku api call
-// <Text style={{fontSize: 20, fontFamily: 'Avenir-Black', fontWeight: '400'}}>Add Detail</Text>
+
 export default class Problem extends Component {
     static navigationOptions = {
-        title: 'Addddd Detail'
+        title: 'Add Detail'
     }
 
     constructor(props){
