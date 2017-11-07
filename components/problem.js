@@ -69,15 +69,14 @@ export default class Problem extends Component {
                                   body: JSON.stringify({
                                     title: this.state.title,
                                     topic: this.state.topic,
-                                    // latex: this.latex
-                                    latex: 'c = \\pm\\sqrt{a^2 + b^2}'
+                                    latex: this.latex
+                                    // latex: 'c = \\pm\\sqrt{a^2 + b^2}'
                                 })
                                 }).then(response => response.json())
                                 .then((responseJson) => {
-                                    console.log('THE RESPONSE FROM THE SERVER IS BUT HTML: ');
+                                    console.log('THE RESPONSE FROM THE SERVER: ');
                                     console.log(responseJson);
-                                    this.move.navigate('ProblemView', {htmlLatex: responseJson.html});
-                                    // this.move.navigate('ProblemView');
+                                    this.move.navigate('ProblemView', {title: responseJson.problem.title, topic: responseJson.problem.topic, renderedLatex: responseJson.renderedLatex});
                                 }).catch(err => console.error(err));
                             })
                         }}
