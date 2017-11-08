@@ -41,50 +41,49 @@ export default class ProblemView extends Component {
 
     render() {
         return (
-            <View>
-                <View style={styles.webView}>
-                    <WebView
-                      source={{html: layoutHTML(this.title, this.topic, this.renderedLatex)}}
-                   />
-                </View>
-
+            <View style={styles.containerHome}>
+                <WebView
+                  source={{html: layoutHTML(this.title, this.topic, this.renderedLatex)}}
+                  style={styles.webView}
+               />
+               <Button
+                   style={styles.button}
+                   textStyle={{fontSize: 18}}
+                   onPress={() =>  this.move.navigate('Camera')}>
+                   <Text style={styles.buttonText}>More</Text>
+               </Button>
             </View>
         )
     }
 }
 
-// <Button
-//     style={styles.button}
-//     textStyle={{fontSize: 18}}
-//     onPress={() =>  this.move.navigate('Camera')}>
-//     <Text style={styles.buttonText}>Capture Another Problem</Text>
-// </Button>
 const styles = StyleSheet.create({
     containerHome: {
         flex: 1,
+        flexDirection: 'column',
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center'
     },
     webView: {
-        bottom: 10
+        marginTop: 20,
+        maxHeight: 200,
+        width: 320,
     },
     buttonText: {
-        fontSize: 18,
+        fontSize: 15,
         color: 'white',
-        // alignSelf: 'center',
-        // textAlign: 'center'
     },
     button: {
         height: 36,
-        width: 75,
+        width: 100,
+        bottom: 350,
         backgroundColor: '#48BBEC',
         borderColor: '#48BBEC',
         borderWidth: 1,
         borderRadius: 8,
-        marginBottom: 10,
-        // top: 5,
-        // alignSelf: 'center',
-        // justifyContent: 'center'
+        alignSelf: 'center',
+        justifyContent: 'center'
+
   }
 });
