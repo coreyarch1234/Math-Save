@@ -1,5 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+
+
+export default class Row extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+
+        }
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+              <Text style={styles.text}>
+                {`${this.props.title} ${this.props.topic}`}
+              </Text>
+            </View>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -18,13 +38,3 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
 });
-
-const Row = (props) => (
-  <View style={styles.container}>
-    <Text style={styles.text}>
-      {`${props.name} ${props.title}`}
-    </Text>
-  </View>
-);
-
-export default Row;

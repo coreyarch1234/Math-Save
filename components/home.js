@@ -32,55 +32,42 @@ export default class HomeScreen extends Component {
     constructor(props){
         super(props);
 
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
         this.state = {
-            dataSource: ds.cloneWithRows(['row 1', 'row 2']),
+            dataSource: this.ds.cloneWithRows([{name: 'corey', title: 'the kid'}, {name: 'corina', title: 'the goat'}])
         };
-
-        this.data = {
-            name: 'Corey',
-            title: 'Engineer'
-        }
 
     }
 
+
+    componentWillMount(){
+        //call server for array of problem posts. set datasource state.
+        fetch('https://ancient-atoll-47438.herokuapp.com/', {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          }
+        }).then(response => response.json())
+        .then((responseJson) => {
+            console.log('THE RESPONSE WITH ALL THE POSTS: ');
+            console.log(responseJson);
+            this.setState({dataSource: this.ds.cloneWithRows(responseJson)});
+        }).catch(err => console.error(err));
+    }
+
     render() {
-        // const { navigate } = this.props.navigation; //gets passed down from stack navigator
         return(
             <ListView
                style={styles.container}
                dataSource={this.state.dataSource}
-               renderRow={(data) => <Row {...this.data} />}
+               renderRow={(data) => <Row {...data} />}
+               renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
             />
         )
     }
 }
-// export default class HomeScreen extends Component {
-//     static navigationOptions = {
-//         title: <Text style={{fontSize: 20, fontFamily: 'Avenir-Black', fontWeight: '400'}}>MathPath</Text>,
-//         tabBarLabel: 'Problems',
-//         tabBarIcon: ({tintColor}) => (
-//             <Image
-//                 source={require('../images/home.png')}
-//                 style={[styles.icon, {tintColor: tintColor}]}
-//             />
-//         )
-//     };
-//
-//     render() {
-//         // const { navigate } = this.props.navigation; //gets passed down from stack navigator
-//         return(
-//             <View style={styles.containerHome}>
-//                 <Image
-//                     source={require('../images/comet.png')}
-//                     style={styles.logo}
-//                 />
-//
-//             </View>
-//         )
-//     }
-// }
 
 const styles = StyleSheet.create({
     container: {
@@ -100,6 +87,11 @@ const styles = StyleSheet.create({
     logo: {
         width: 52,
         height: 52,
+    },
+    separator: {
+        flex: 1,
+        height: StyleSheet.hairlineWidth,
+        backgroundColor: '#8E8E8E',
     },
 
 });
