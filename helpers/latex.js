@@ -3,6 +3,7 @@ module.exports = (title, topic, latex) => {
         `<!DOCTYPE html>
     <html>
         <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <!-- latex styling -->
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
               <!-- katex rendering  -->
@@ -17,42 +18,34 @@ module.exports = (title, topic, latex) => {
                 padding: 0;
             }
             html, body {
-                width: 100%;
-                height: 100%;
                 background-color: white;
                 font-family: 'Avenir-Black';
+                font-size: 18px;
             }
             .heading-container{
-                height: 50%;
-                width: 100%;
-                position: absolute;
 
             }
             #title{
-                position: relative;
                 text-align: center;
-                top: 10%;
-                padding-bottom: 4em;
+                padding-bottom: 1em;
                 font-weight: 700;
-                font-size: 3em;
                 color: black;
+                border: 1px solid red;
             }
             #latexElement {
-                position: relative;
                 text-align: center;
-                top: 5%;
                 font-weight: 400;
-                font-size: 3em;
+                padding-bottom: 1em;
+                border: 1px solid green;
             }
             #topic{
-                position: relative;
                 text-align: center;
-                top: 10%;
                 padding-bottom: 2em;
                 font-weight: lighter;
                 font-style: italic;
-                font-size: 2.5em;
                 color: black;
+                border: 1px solid blue;
+
             }
         </style>
 

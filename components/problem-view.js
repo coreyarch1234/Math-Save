@@ -41,10 +41,12 @@ export default class ProblemView extends Component {
 
     render() {
         return (
+
             <View style={styles.containerHome}>
                 <WebView
-                  source={{html: layoutHTML(this.title, this.topic, this.renderedLatex)}}
-                  style={styles.webView}
+                    source={{html: layoutHTML(this.title, this.topic, this.renderedLatex)}}
+                    automaticallyAdjustContentInsets={true}
+                    style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height}}
                />
                <Button
                    style={styles.button}
@@ -57,6 +59,18 @@ export default class ProblemView extends Component {
     }
 }
 
+// <View style={styles.containerHome}>
+//     <WebView
+//       source={{html: layoutHTML(this.title, this.topic, this.renderedLatex)}}
+//       style={styles.webView}
+//    />
+//    <Button
+//        style={styles.button}
+//        textStyle={{fontSize: 18}}
+//        onPress={() =>  this.move.navigate('Camera')}>
+//        <Text style={styles.buttonText}>More</Text>
+//    </Button>
+// </View>
 const styles = StyleSheet.create({
     containerHome: {
         flex: 1,

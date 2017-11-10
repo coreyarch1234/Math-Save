@@ -23,7 +23,7 @@ import ProblemView from './problem-view';
 
 export default class Problem extends Component {
     static navigationOptions = {
-        title: 'Adddd Detail'
+        title: 'Add Detail'
     }
 
     constructor(props){
@@ -70,7 +70,6 @@ export default class Problem extends Component {
                                     title: this.state.title,
                                     topic: this.state.topic,
                                     latex: this.latex
-                                    // latex: 'c = \\pm\\sqrt{a^2 + b^2}'
                                 })
                                 }).then(response => response.json())
                                 .then((responseJson) => {
