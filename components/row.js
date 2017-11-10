@@ -12,21 +12,39 @@ export default class Row extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-              <Text style={styles.text}>
-                {`${this.props.title} ${this.props.topic}`}
-              </Text>
+            <View style={styles.containerRow}>
+                <View style={styles.containerColumn}>
+                    <View>
+                        <Text style={styles.text}>
+                          {`${this.props.title}`}
+                        </Text>
+                    </View>
+                </View>
+                <View style={styles.containerColumn}>
+                    <View>
+                        <Text style={styles.text}>
+                          {`${this.props.topic}`}
+                        </Text>
+                    </View>
+                </View>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerRow: {
     flex: 1,
     padding: 12,
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  containerColumn: {
+    flex: 1,
+    padding: 12,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   text: {
     marginLeft: 12,
