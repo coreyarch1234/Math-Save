@@ -26,16 +26,12 @@ export default class ProblemView extends Component {
         this.state = {
 
         }
-        this.move = this.props.navigation;
 
+        this.move = this.props.navigation;
 
         this.renderedLatex = this.props.navigation.state.params.renderedLatex; //contains the latex
         this.title = this.props.navigation.state.params.title;
         this.topic = this.props.navigation.state.params.topic;
-        console.log('THE TITLE IS: ');
-        console.log(this.title);
-        console.log('THE TOPIC IS: ');
-        console.log(this.topic);
     }
 
     render() {

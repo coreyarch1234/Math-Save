@@ -3,13 +3,10 @@ import {
   Platform,
   StyleSheet,
   Text,
-  Button,
   View,
   TouchableHighlight,
   Image,
   Dimensions,
-  NativeModules,
-  PixelRatio
 } from 'react-native';
 
 import Camera from 'react-native-camera';
@@ -142,12 +139,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#e67e22',
-    },
-    containerHome: {
-        flex: 1,
-        backgroundColor: '#3498db',
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     icon: {
         width: 26,

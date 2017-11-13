@@ -5,11 +5,8 @@ import {
   Text,
   Button,
   View,
-  TouchableHighlight,
-  Image,
-  Dimensions,
-  NativeModules,
-  PixelRatio
+  Image
+
 } from 'react-native';
 
 import { TabNavigator, StackNavigator } from 'react-navigation';
@@ -17,24 +14,26 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 //Camera screen
 import CameraScreen from './components/camera';
 
-import HomeScreen from './components/home';
+import ProblemListScreen from './components/problem-list';
 
 import Problem from './components/problem';
 
 import ProblemView from './components/problem-view';
 
-import Options from './components/options';
-//Navigators
+import HomeScreen from './components/home';
+
 
 const CameraStack = StackNavigator({
-  Camera: {screen: CameraScreen},
-  Problem: {screen: Problem},
-  ProblemView: {screen: ProblemView}
+    Camera: {screen: CameraScreen},
+    Problem: {screen: Problem},
+    ProblemView: {screen: ProblemView}
 });
 
 const HomeStack = StackNavigator({
-  Home: {screen: HomeScreen},
-  Options: {screen: Options},
+
+    Home: {screen: HomeScreen},
+    ProblemList: {screen: ProblemListScreen},
+
 
 });
 
@@ -75,25 +74,6 @@ const MathTabs = TabNavigator({
     },
 });
 
-// //Stack navigator
-// const MathApp = StackNavigator({
-//   MathContainer: { screen: MathTabs },
-//   Problem: {screen: Problem},
-//   ProblemView: {screen: ProblemView}
-// });
-
-
-
-// const CameraTabScreen = (props) => {
-//     return (
-//         <View>
-//             {CameraStack}
-//         </View>
-//     )
-// }
-
-// return <MathApp />;
-//Main app
 
 const styles = {
     icon: {
@@ -101,6 +81,7 @@ const styles = {
         height: 26,
     }
 }
+
 export default class App extends React.Component {
     render() {
         return <MathTabs />;

@@ -5,11 +5,6 @@ import {
   Text,
   Button,
   View,
-  TouchableHighlight,
-  Image,
-  Dimensions,
-  NativeModules,
-  PixelRatio,
   KeyboardAvoidingView
 } from 'react-native';
 
@@ -19,7 +14,6 @@ import ProblemInfo from './problem-info';
 //Problem View
 import ProblemView from './problem-view';
 
-//next to do is the same for difficulty and topic. And in return setstate function, make heroku api call
 
 export default class Problem extends Component {
     static navigationOptions = {
@@ -33,17 +27,11 @@ export default class Problem extends Component {
             topic: null
         }
         this.latex = this.props.navigation.state.params.latex; //contains the latex
-        console.log('LATEX SAVED AND PASSED IN PROPS FROM CAMERA: ');
-        console.log(this.props.navigation);
-        console.log(this.props.navigation.state);
-        console.log(this.props.navigation.state.params);
-        console.log(this.props.navigation.state.params.latex);
 
         this.move = this.props.navigation; //to send html in navigate
     }
 
     render() {
-        console.log(this.state.title);
         return (
             <KeyboardAvoidingView
              behavior="padding"

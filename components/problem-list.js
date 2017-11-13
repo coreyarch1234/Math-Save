@@ -5,11 +5,6 @@ import {
   Text,
   Button,
   View,
-  TouchableHighlight,
-  Image,
-  Dimensions,
-  NativeModules,
-  PixelRatio,
   ListView
 } from 'react-native';
 
@@ -17,7 +12,7 @@ import Row from './row';
 //list view that gets data from server heroku problems
 //passses this data as props to render row
 
-export default class HomeScreen extends Component {
+export default class ProblemListScreen extends Component {
     static navigationOptions = {
         title: <Text style={{fontSize: 20, fontFamily: 'Avenir-Black', fontWeight: '400'}}>MathPath</Text>,
     };
@@ -45,8 +40,6 @@ export default class HomeScreen extends Component {
           }
         }).then(response => response.json())
         .then((responseJson) => {
-            // console.log('THE RESPONSE WITH ALL THE POSTS: ');
-            // console.log(responseJson);
             this.setState({dataSource: this.ds.cloneWithRows(responseJson)});
         }).catch(err => console.error(err));
     }
@@ -68,20 +61,6 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: 20,
     },
-    containerHome: {
-        flex: 1,
-        backgroundColor: '#3498db',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    icon: {
-        width: 26,
-        height: 26,
-    },
-    logo: {
-        width: 52,
-        height: 52,
-    },
     separator: {
         flex: 1,
         height: StyleSheet.hairlineWidth,
@@ -89,17 +68,3 @@ const styles = StyleSheet.create({
     },
 
 });
-
-//
-// export default () => <HomeScreen
-//     ref={(ref) => { this.nav = ref; }}
-//     onNavigationStateChange={(prevState, currentState) => {
-//          const getCurrentRouteName = (navigationState) => {
-//          if (!navigationState) return null;
-//          const route = navigationState.routes[navigationState.index];
-//          if (route.routes) return getCurrentRouteName(route);
-//          return route.routeName;
-//     };
-//     global.currentRoute = getCurrentRouteName(currentState);
-//   }}
-// />;
