@@ -22,6 +22,8 @@ import HomeScreen from './components/home';
 import Problem from './components/problem';
 
 import ProblemView from './components/problem-view';
+
+import Options from './components/options';
 //Navigators
 
 const CameraStack = StackNavigator({
@@ -30,14 +32,38 @@ const CameraStack = StackNavigator({
   ProblemView: {screen: ProblemView}
 });
 
+const HomeStack = StackNavigator({
+  Home: {screen: HomeScreen},
+  Options: {screen: Options},
+
+});
+
 //Tab navigator
 const MathTabs = TabNavigator({
     Home: {
-        screen: HomeScreen,
+        screen: HomeStack,
+        navigationOptions: {
+            tabBarLabel: 'Problems',
+            tabBarIcon: ({tintColor}) => (
+                <Image
+                    source={require('./images/home.png')}
+                    style={[styles.icon, {tintColor: tintColor}]}
+                />
+            )
+        }
 
     },
     Camera: {
         screen: CameraStack,
+        navigationOptions: {
+            tabBarLabel:'Camera',
+            tabBarIcon: ({tintColor}) => (
+                <Image
+                    source={require('./images/camera.png')}
+                    style={[styles.icon, {tintColor: tintColor}]}
+                />
+            )
+        }
 
     },
 },
@@ -68,6 +94,13 @@ const MathTabs = TabNavigator({
 
 // return <MathApp />;
 //Main app
+
+const styles = {
+    icon: {
+        width: 26,
+        height: 26,
+    }
+}
 export default class App extends React.Component {
     render() {
         return <MathTabs />;

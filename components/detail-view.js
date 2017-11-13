@@ -13,10 +13,8 @@ import {
 import HTML from 'react-native-render-html';
 import layoutHTML from '../helpers/latex';
 
-import Button from 'apsl-react-native-button';
 
-//next to do is the same for difficulty and topic. And in return setstate function, make heroku api call
-export default class ProblemView extends Component {
+export default class DetailView extends Component {
     static navigationOptions = {
         title: 'Review'
     }
@@ -26,16 +24,12 @@ export default class ProblemView extends Component {
         this.state = {
 
         }
+
+        this.title = this.props.title;
+        this.topic = this.props.title;
+        this.renderedLatex = this.props.latex;
         this.move = this.props.navigation;
 
-
-        this.renderedLatex = this.props.navigation.state.params.renderedLatex; //contains the latex
-        this.title = this.props.navigation.state.params.title;
-        this.topic = this.props.navigation.state.params.topic;
-        console.log('THE TITLE IS: ');
-        console.log(this.title);
-        console.log('THE TOPIC IS: ');
-        console.log(this.topic);
     }
 
     render() {
@@ -47,12 +41,6 @@ export default class ProblemView extends Component {
                     automaticallyAdjustContentInsets={true}
                     style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height}}
                />
-               <Button
-                   style={styles.button}
-                   textStyle={{fontSize: 18}}
-                   onPress={() =>  this.move.navigate('Camera')}>
-                   <Text style={styles.buttonText}>More</Text>
-               </Button>
             </View>
         )
     }
