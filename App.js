@@ -24,13 +24,21 @@ import Problem from './components/problem';
 import ProblemView from './components/problem-view';
 //Navigators
 
+const CameraStack = StackNavigator({
+  Camera: {screen: CameraScreen},
+  Problem: {screen: Problem},
+  ProblemView: {screen: ProblemView}
+});
+
 //Tab navigator
 const MathTabs = TabNavigator({
     Home: {
-        screen: HomeScreen
+        screen: HomeScreen,
+
     },
     Camera: {
-        screen: CameraScreen
+        screen: CameraStack,
+
     },
 },
 {
@@ -41,17 +49,28 @@ const MathTabs = TabNavigator({
     },
 });
 
-//Stack navigator
-const MathApp = StackNavigator({
-  MathContainer: { screen: MathTabs },
-  Problem: {screen: Problem},
-  ProblemView: {screen: ProblemView}
-});
+// //Stack navigator
+// const MathApp = StackNavigator({
+//   MathContainer: { screen: MathTabs },
+//   Problem: {screen: Problem},
+//   ProblemView: {screen: ProblemView}
+// });
 
 
+
+// const CameraTabScreen = (props) => {
+//     return (
+//         <View>
+//             {CameraStack}
+//         </View>
+//     )
+// }
+
+// return <MathApp />;
 //Main app
 export default class App extends React.Component {
     render() {
-        return <MathApp />;
+        return <MathTabs />;
+
     }
 }

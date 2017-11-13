@@ -23,7 +23,8 @@ import ProblemView from './problem-view';
 
 export default class Problem extends Component {
     static navigationOptions = {
-        title: 'Add Detail'
+        title: 'Add Detail',
+        tabBarLabel: 'Camera',
     }
 
     constructor(props){
