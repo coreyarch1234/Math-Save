@@ -24,12 +24,15 @@ export default class DetailView extends Component {
         this.state = {
 
         }
-        //
-        // this.move = this.props.navigation;
-        //
-        // this.title = this.props.title;
-        // this.topic = this.props.topic;
-        // this.renderedLatex = this.props.latex;
+
+        this.move = this.props.navigation;
+        console.log('detail view data: ');
+        console.log(this.props);
+        console.log(this.props.navigation.state.params);
+
+        this.title = this.props.navigation.state.params.title;
+        this.topic = this.props.navigation.state.params.topic;
+        this.renderedLatex = this.props.navigation.state.params.renderedLatex;
 
     }
 
@@ -43,7 +46,13 @@ export default class DetailView extends Component {
     // </View>
     render() {
         return (
-            <Text>Hello world</Text>
+            <View style={styles.containerHome}>
+                <WebView
+                    source={{html: layoutHTML(this.title, this.topic, this.renderedLatex)}}
+                    automaticallyAdjustContentInsets={true}
+                    style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height}}
+               />
+            </View>
 
         )
     }

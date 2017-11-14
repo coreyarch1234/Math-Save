@@ -100,7 +100,7 @@ export default class ProblemListScreen extends Component {
 
     renderRow(dataRow){
         return (
-            <TouchableHighlight onPress={() =>  this.move.navigate('DetailScreen')}>
+            <TouchableHighlight onPress={() =>  this.move.navigate('DetailScreen', {title: dataRow.title, topic: dataRow.topic, renderedLatex: dataRow.latex})}>
 
                 <View style={styles.containerRow}>
                     <View style={styles.containerColumn}>
