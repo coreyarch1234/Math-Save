@@ -17,6 +17,8 @@ export default class Home extends Component {
     constructor(props){
         super(props);
         this.move = this.props.navigation;
+        console.log('the navigation is home: ');
+        console.log(this.move.navigate);
 
     }
 
@@ -25,7 +27,7 @@ export default class Home extends Component {
             <View>
                 <Button
                   style={styles.button}
-                  onPress={() =>  this.move.navigate('Home')}
+                  onPress={() =>  this.move.navigate('ProblemList')}
                   title="See all problems"
                 />
 

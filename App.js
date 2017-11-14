@@ -22,6 +22,8 @@ import ProblemView from './components/problem-view';
 
 import HomeScreen from './components/home';
 
+import DetailView from './components/detail-view';
+
 
 const CameraStack = StackNavigator({
     Camera: {screen: CameraScreen},
@@ -33,7 +35,7 @@ const HomeStack = StackNavigator({
 
     Home: {screen: HomeScreen},
     ProblemList: {screen: ProblemListScreen},
-
+    DetailScreen: {screen: DetailView}
 
 });
 
