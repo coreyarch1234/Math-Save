@@ -36,14 +36,6 @@ export default class DetailView extends Component {
 
     }
 
-
-    // <View style={styles.containerHome}>
-    //     <WebView
-    //         source={{html: layoutHTML(this.title, this.topic, this.renderedLatex)}}
-    //         automaticallyAdjustContentInsets={true}
-    //         style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height}}
-    //    />
-    // </View>
     render() {
         return (
             <View style={styles.containerHome}>

@@ -27,30 +27,49 @@ export default class Row extends Component {
     }
     render() {
         return (
-
-            <TouchableHighlight onPress={() => this._pressRow()}>
-
-                <View style={styles.containerRow}>
-                    <View style={styles.containerColumn}>
-                        <View>
-                            <Text style={styles.text}>
-                              {`${this.props.title}`}
-                            </Text>
-                        </View>
-                    </View>
-                    <View style={styles.containerColumn}>
-                        <View>
-                            <Text style={styles.text}>
-                              {`${this.props.topic}`}
-                            </Text>
-                        </View>
-                    </View>
-                </View>
-
-            </TouchableHighlight>
+            <View style={styles.containerRow}>
+                   <View style={styles.containerColumn}>
+                       <View>
+                           <Text style={styles.text}>
+                             {`${this.props.title}`}
+                           </Text>
+                       </View>
+                   </View>
+                   <View style={styles.containerColumn}>
+                       <View>
+                           <Text style={styles.text}>
+                             {`${this.props.topic}`}
+                           </Text>
+                       </View>
+                   </View>
+               </View>    
         )
     }
 }
+
+
+
+// <TouchableHighlight onPress={() => this._pressRow()}>
+//
+//     <View style={styles.containerRow}>
+//         <View style={styles.containerColumn}>
+//             <View>
+//                 <Text style={styles.text}>
+//                   {`${this.props.title}`}
+//                 </Text>
+//             </View>
+//         </View>
+//         <View style={styles.containerColumn}>
+//             <View>
+//                 <Text style={styles.text}>
+//                   {`${this.props.topic}`}
+//                 </Text>
+//             </View>
+//         </View>
+//     </View>
+//
+// </TouchableHighlight>
+//
 
 const styles = StyleSheet.create({
   containerRow: {

@@ -30,13 +30,13 @@ module.exports = (title, topic, latex) => {
                 padding-bottom: 1em;
                 font-weight: 700;
                 color: black;
-                border: 1px solid red;
+
             }
             #latexElement {
                 text-align: center;
                 font-weight: 400;
                 padding-bottom: 1em;
-                border: 1px solid green;
+
             }
             #topic{
                 text-align: center;
@@ -44,7 +44,7 @@ module.exports = (title, topic, latex) => {
                 font-weight: lighter;
                 font-style: italic;
                 color: black;
-                border: 1px solid blue;
+                
 
             }
         </style>

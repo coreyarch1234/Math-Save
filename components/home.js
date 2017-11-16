@@ -30,17 +30,17 @@ export default class Home extends Component {
                   onPress={() =>  this.move.navigate('ProblemList')}
                   title="See all problems"
                 />
-
-                <Button
-                  style={styles.button}
-                  onPress={() =>  console.log('This will generate a random problem')}
-                  title="Random Problem"
-                />
             </View>
         )
     }
 }
 
+
+// <Button
+//   style={styles.button}
+//   onPress={() =>  console.log('This will generate a random problem')}
+//   title="Random Problem"
+// />
 
 const styles = StyleSheet.create({
     container: {
