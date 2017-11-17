@@ -15,7 +15,7 @@ import Row from './row';
 
 export default class ProblemListScreen extends Component {
     static navigationOptions = {
-        title: <Text style={{fontSize: 20, fontFamily: 'Avenir-Black', fontWeight: '400'}}>MathPath</Text>,
+        title: 'MathPath',
     };
 
     constructor(props){
@@ -49,17 +49,59 @@ export default class ProblemListScreen extends Component {
         }).catch(err => console.error(err));
     }
 
+    _pressRow(row, title, topic, latex) {
+      console.log('This row was tapped: => ', row);
+      this.move.navigate('DetailScreen', {title: title, topic: topic, renderedLatex: latex});
+    }
+
+    _renderRow(rowData, section, row) {
+      const title = rowData.title;
+      const topic = rowData.topic;
+      const renderedLatex = rowData.latex;
+      return (
+          <TouchableHighlight onPress={() => this._pressRow(row, title, topic, renderedLatex)}>
+              <View style={styles.containerRow}>
+                  <View style={styles.containerColumn}>
+                      <View>
+                          <Text style={styles.text}>
+                              {title}
+                          </Text>
+                      </View>
+                  </View>
+                  <View style={styles.containerColumn}>
+                      <View>
+                          <Text style={styles.text}>
+                              {topic}
+                          </Text>
+                      </View>
+                  </View>
+              </View>
+          </TouchableHighlight>
+      )
+  }
+
     render() {
-        return(
+        return (
             <ListView
-               style={styles.container}
-               dataSource={this.state.dataSource}
-               renderRow={(data) => <Row {...data}  />}
-               renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+              style={styles.container}
+              dataSource={this.state.dataSource}
+              renderRow={this._renderRow.bind(this)}
             />
         )
     }
 }
+
+
+// <ListView
+//    style={styles.container}
+//    dataSource={this.state.dataSource}
+//    renderRow={(data) => <Row {...data}  />}
+//    renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+// />
+
+
+
+
 
 // export default class ProblemListScreen extends Component {
 //     static navigationOptions = {
