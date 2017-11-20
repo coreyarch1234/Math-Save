@@ -60,7 +60,6 @@ export default class ProblemListScreen extends Component {
       const title = rowData.title;
       const topic = rowData.topic;
       const renderedLatex = rowData.renderedLatex;
-      // const renderedLatex = JSON.parse(rowData.renderedLatex);
       return (
           <TouchableHighlight onPress={() => this._pressRow(row, title, topic, renderedLatex)}>
               <View style={styles.containerRow}>

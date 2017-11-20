@@ -35,9 +35,6 @@ export default class ProblemView extends Component {
     }
 
     render() {
-        // let jsCode = `
-        //     katex.render('\\left.\\begin{array} { l } { x ^ { 2} + 5= 0} \\\\ { x + 1= 0} \\end{array} \\right.', document.getElementById('latexElement'));
-        // `;
         return (
 
             <View style={styles.containerHome}>

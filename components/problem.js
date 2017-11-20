@@ -63,7 +63,6 @@ export default class Problem extends Component {
                                 .then((responseJson) => {
                                     console.log('THE RESPONSE FROM THE SERVER: ');
                                     console.log(responseJson);
-                                    // var renderedLatex = JSON.parse(responseJson.problem.renderedLatex);
                                     this.move.navigate('ProblemView', {
                                         title: responseJson.problem.title,
                                         topic: responseJson.problem.topic,
