@@ -45,6 +45,7 @@ export default class CameraScreen extends Component<{}> {
 
     static navigationOptions = {
         title: 'Camera',
+        headerLeft: null,
         headerTitleStyle: {fontSize: 20, fontFamily: 'Avenir-Black', fontWeight: '400' },
         tabBarLabel: 'Camera',
         tabBarIcon: ({tintColor}) => (

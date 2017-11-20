@@ -44,7 +44,7 @@ const MathTabs = TabNavigator({
     Home: {
         screen: HomeStack,
         navigationOptions: {
-            tabBarLabel: 'Problems',
+            tabBarLabel: 'Home',
             tabBarIcon: ({tintColor}) => (
                 <Image
                     source={require('./images/home.png')}

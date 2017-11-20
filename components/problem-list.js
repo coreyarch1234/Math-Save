@@ -15,7 +15,7 @@ import Row from './row';
 
 export default class ProblemListScreen extends Component {
     static navigationOptions = {
-        title: 'MathPath',
+        title: 'Problems',
     };
 
     constructor(props){
