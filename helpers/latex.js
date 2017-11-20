@@ -44,7 +44,7 @@ module.exports = (title, topic, latex) => {
                 font-weight: lighter;
                 font-style: italic;
                 color: black;
-                
+
 
             }
         </style>
@@ -62,9 +62,7 @@ module.exports = (title, topic, latex) => {
                 </h2>
             </div>
         </body>
-        <script type="text/javascript">
-
-        </script>
+        
 
     </html>`
     )

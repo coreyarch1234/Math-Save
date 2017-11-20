@@ -53,7 +53,7 @@ export default class ProblemListScreen extends Component {
 
     _pressRow(row, title, topic, renderedLatex) {
       console.log('This row was tapped: => ', row);
-      this.move.navigate('DetailScreen', {title: title, topic: topic, renderedLatex: renderedLatex});
+      this.move.navigate('DetailScreen', { title, topic, renderedLatex });
     }
 
     _renderRow(rowData, section, row) {
