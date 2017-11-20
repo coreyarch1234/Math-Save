@@ -36,7 +36,8 @@ export default class CameraScreen extends Component<{}> {
     constructor(props){
         super(props);
         this.state = {
-            currentLatex: null
+            currentLatex: null,
+            errorMessage: false
         }
         this.move = this.props.navigation;
         console.log('the navigate object is: ');
@@ -55,6 +56,19 @@ export default class CameraScreen extends Component<{}> {
             />
         )
     };
+
+    showErrorMessage(){
+        if (this.state.errorMessage){
+            return (
+                <Text style = {{fontSize: 20, color: 'yellow',}}>Take a clearer picture</Text>
+            )
+        }
+        else{
+            return (
+                <Text style = {{fontSize: 20, color: 'white'}}>Focus and snap!</Text>
+            )
+        }
+    }
 
     takePicture() {
 
@@ -93,18 +107,23 @@ export default class CameraScreen extends Component<{}> {
                  console.log(responseJson);
                  console.log("THE LATEX IS: ");
                  console.log(responseJson.latex);
-                 var latex = responseJson.latex;
+                 if (responseJson.latex == ''){
+                     this.setState({errorMessage: true});
+                     return
+                 }else{
+    
+                     var latex = responseJson.latex;
 
-                 //change current latex
-                 this.setState({currentLatex: latex}, function(){
-                     console.log("the current state is now: " + this.state.currentLatex);
-                     //navigate to problem  info fields
-                     console.log('test to see if you can print navigate here: ');
-                     console.log(this.move);
-                     this.move.navigate('Problem', {latex: this.state.currentLatex});
-
-                 });
-                 return responseJson;
+                     //change current latex
+                     this.setState({currentLatex: latex}, function(){
+                         console.log("the current state is now: " + this.state.currentLatex);
+                         //navigate to problem  info fields
+                         console.log('test to see if you can print navigate here: ');
+                         console.log(this.move);
+                         this.move.navigate('Problem', {latex: this.state.currentLatex});
+                     });
+                     return responseJson;
+                 }
              }).catch(err => console.error(err));
 
         }).catch(err => console.error(err));
@@ -113,22 +132,23 @@ export default class CameraScreen extends Component<{}> {
     render() {
         return (
           <View style={styles.container}>
-
-            <Camera
-               captureTarget={Camera.constants.CaptureTarget.memory}
-               ref={(cam) => {
-                 this.camera = cam;
-               }}
-               style={styles.preview}
-               aspect={Camera.constants.Aspect.fill}>
-               <TouchableHighlight onPress={this.takePicture.bind(this)} >
-                  <Image
-                      source={require('../images/circle.png')}
-                      style={[styles.capture]}
-                  />
-              </TouchableHighlight>
-           </Camera>
-           <View style={styles.rectangle} />
+              <View style= {{height: 50, padding: 10}}>
+                  {this.showErrorMessage()}
+              </View>
+              <Camera
+                 captureTarget={Camera.constants.CaptureTarget.memory}
+                 ref={(cam) => {
+                   this.camera = cam;
+                 }}
+                 style={styles.preview}
+                 aspect={Camera.constants.Aspect.fill}>
+                 <TouchableHighlight onPress={this.takePicture.bind(this)} >
+                    <Image
+                        source={require('../images/circle.png')}
+                        style={[styles.capture]}
+                    />
+                </TouchableHighlight>
+             </Camera>
           </View>
         );
     }
