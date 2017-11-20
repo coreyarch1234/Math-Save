@@ -45,19 +45,22 @@ export default class ProblemListScreen extends Component {
           }
         }).then(response => response.json())
         .then((responseJson) => {
+            console.log('$$$$$ THE JSON IS: $$$$$');
+            console.log(responseJson);
             this.setState({dataSource: this.ds.cloneWithRows(responseJson)});
         }).catch(err => console.error(err));
     }
 
-    _pressRow(row, title, topic, latex) {
+    _pressRow(row, title, topic, renderedLatex) {
       console.log('This row was tapped: => ', row);
-      this.move.navigate('DetailScreen', {title: title, topic: topic, renderedLatex: latex});
+      this.move.navigate('DetailScreen', {title: title, topic: topic, renderedLatex: renderedLatex});
     }
 
     _renderRow(rowData, section, row) {
       const title = rowData.title;
       const topic = rowData.topic;
-      const renderedLatex = rowData.latex;
+      const renderedLatex = rowData.renderedLatex;
+      // const renderedLatex = JSON.parse(rowData.renderedLatex);
       return (
           <TouchableHighlight onPress={() => this._pressRow(row, title, topic, renderedLatex)}>
               <View style={styles.containerRow}>
