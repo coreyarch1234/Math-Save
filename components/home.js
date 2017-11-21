@@ -11,7 +11,9 @@ import {
 
 export default class Home extends Component {
     static navigationOptions = {
-        title: 'MathPath'
+        title: 'Home',
+        tabBarVisible: false,
+
     };
 
     constructor(props){

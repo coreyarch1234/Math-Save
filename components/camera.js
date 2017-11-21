@@ -47,7 +47,6 @@ export default class CameraScreen extends Component<{}> {
     static navigationOptions = {
         title: 'Camera',
         headerLeft: null,
-        headerTitleStyle: {fontSize: 20, fontFamily: 'Avenir-Black', fontWeight: '400' },
         tabBarLabel: 'Camera',
         tabBarIcon: ({tintColor}) => (
             <Image
@@ -60,7 +59,7 @@ export default class CameraScreen extends Component<{}> {
     showErrorMessage(){
         if (this.state.errorMessage){
             return (
-                <Text style = {{fontSize: 20, color: 'yellow',}}>Take a clearer picture</Text>
+                <Text style = {{fontSize: 20, color: 'yellow'}}>Take a clearer picture</Text>
             )
         }
         else{
@@ -111,7 +110,7 @@ export default class CameraScreen extends Component<{}> {
                      this.setState({errorMessage: true});
                      return
                  }else{
-    
+
                      var latex = responseJson.latex;
 
                      //change current latex

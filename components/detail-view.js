@@ -16,7 +16,7 @@ import layoutHTML from '../helpers/latex';
 
 export default class DetailView extends Component {
     static navigationOptions = {
-        title: 'Review'
+        title: 'Problem'
     }
 
     constructor(props){

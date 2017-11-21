@@ -15,7 +15,7 @@ import Row from './row';
 
 export default class ProblemListScreen extends Component {
     static navigationOptions = {
-        title: 'Problems',
+        title: 'Library',
     };
 
     constructor(props){

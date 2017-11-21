@@ -18,7 +18,7 @@ import Button from 'apsl-react-native-button';
 //next to do is the same for difficulty and topic. And in return setstate function, make heroku api call
 export default class ProblemView extends Component {
     static navigationOptions = {
-        title: 'Preview',
+        title: 'Problem',
         headerLeft: null
     }
 
