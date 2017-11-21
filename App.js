@@ -35,8 +35,11 @@ const HomeStack = StackNavigator({
 
     Home: {screen: HomeScreen},
     ProblemList: {screen: ProblemListScreen},
-    DetailScreen: {screen: DetailView}
+    DetailScreen: {screen: DetailView},
+    // headerMode: {screen: HomeScreen},
 
+},{
+  headerMode: 'screen' // 这里必须设置成 screen
 });
 
 //Tab navigator
