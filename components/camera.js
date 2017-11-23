@@ -47,6 +47,8 @@ export default class CameraScreen extends Component<{}> {
     static navigationOptions = {
         title: 'Camera',
         headerLeft: null,
+        headerStyle: { backgroundColor: '#fefefe' },
+        headerTitleStyle: { color: '#484848', fontFamily: 'Montserrat-SemiBold' },
         tabBarLabel: 'Camera',
         tabBarIcon: ({tintColor}) => (
             <Image
@@ -59,12 +61,12 @@ export default class CameraScreen extends Component<{}> {
     showErrorMessage(){
         if (this.state.errorMessage){
             return (
-                <Text style = {{fontSize: 20, color: 'yellow'}}>Take a clearer picture</Text>
+                <Text style = {{fontSize: 12, color: 'white', fontFamily:'Montserrat-Medium', paddingLeft: '100%', paddingRight: '100%', paddingBottom: 8, paddingTop: 7, backgroundColor: '#f05364'}}>Refocus your camera and try again!</Text>
             )
         }
         else{
             return (
-                <Text style = {{fontSize: 20, color: 'white'}}>Focus and snap!</Text>
+                <Text style = {{fontSize: 12, color: 'white', fontFamily:'Montserrat-Medium', paddingTop: 8}}>Focus your camera and take a picture!</Text>
             )
         }
     }
@@ -131,7 +133,7 @@ export default class CameraScreen extends Component<{}> {
     render() {
         return (
           <View style={styles.container}>
-              <View style= {{height: 50, padding: 10}}>
+              <View style= {{height: 30}}>
                   {this.showErrorMessage()}
               </View>
               <Camera
@@ -143,7 +145,7 @@ export default class CameraScreen extends Component<{}> {
                  aspect={Camera.constants.Aspect.fill}>
                  <TouchableHighlight onPress={this.takePicture.bind(this)} >
                     <Image
-                        source={require('../images/circle.png')}
+                        source={require('../images/circle3.png')}
                         style={[styles.capture]}
                     />
                 </TouchableHighlight>
@@ -158,7 +160,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#e67e22',
+        backgroundColor: '#6c6cb2',
     },
     icon: {
         width: 26,
@@ -175,8 +177,8 @@ const styles = StyleSheet.create({
         width: 60,
         height: 60,
         borderRadius: 5,
-        bottom: 40,
-        margin: 40,
+        bottom: 0,
+        margin: 20,
     },
     rectangle: {
         position: "absolute",

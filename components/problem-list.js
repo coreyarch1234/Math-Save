@@ -16,6 +16,9 @@ import Row from './row';
 export default class ProblemListScreen extends Component {
     static navigationOptions = {
         title: 'Library',
+        headerStyle: { backgroundColor: '#fefefe' },
+        headerBackTitleStyle: {color: '#6c6cb2'},
+        headerTitleStyle: { color: '#484848', fontFamily: 'Montserrat-SemiBold' }
     };
 
     constructor(props){
@@ -187,7 +190,7 @@ export default class ProblemListScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 20,
+        backgroundColor: 'white'
     },
     separator: {
         flex: 1,

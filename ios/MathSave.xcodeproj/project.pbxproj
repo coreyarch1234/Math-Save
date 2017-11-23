@@ -37,7 +37,6 @@
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
@@ -59,6 +58,8 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		9AD0861290F94031866E59BD /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F00D14B0D4C443E8E50D0EC /* libRNFS.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		E0FF96011FC42CC70017FE2B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0FF96001FC42CC70017FE2B /* Launch Screen.storyboard */; };
+		E0FF96031FC42DC30017FE2B /* tangent-icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E0FF96021FC42DC30017FE2B /* tangent-icon.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -370,7 +371,6 @@
 		13B07F961A680F5B00A75B9A /* MathSave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathSave.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = MathSave/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = MathSave/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MathSave/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MathSave/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MathSave/main.m; sourceTree = "<group>"; };
@@ -387,6 +387,8 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		D5B9235A8DFB446B97946FE3 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
+		E0FF96001FC42CC70017FE2B /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "MathSave/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		E0FF96021FC42DC30017FE2B /* tangent-icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tangent-icon.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -552,12 +554,12 @@
 		13B07FAE1A68108700A75B9A /* MathSave */ = {
 			isa = PBXGroup;
 			children = (
+				E0FF96001FC42CC70017FE2B /* Launch Screen.storyboard */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = MathSave;
@@ -634,6 +636,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				E0FF96021FC42DC30017FE2B /* tangent-icon.jpg */,
 				0E6389B61FC3F5CE00B58FBF /* Montserrat-Black.ttf */,
 				0E6389B71FC3F5CE00B58FBF /* Montserrat-BlackItalic.ttf */,
 				0E6389B81FC3F5CE00B58FBF /* Montserrat-Bold.ttf */,
@@ -771,7 +774,8 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = K65P9Z3374;
+						DevelopmentTeam = 5M7MAFMP3Z;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1147,6 +1151,7 @@
 				0E6389B41FC3F22000B58FBF /* Montserrat-Regular.ttf in Resources */,
 				0E6389CE1FC3F5EE00B58FBF /* Montserrat-ExtraLightItalic.ttf in Resources */,
 				0E6389D61FC3F60100B58FBF /* Montserrat-Thin.ttf in Resources */,
+				E0FF96011FC42CC70017FE2B /* Launch Screen.storyboard in Resources */,
 				0E6389CF1FC3F5F100B58FBF /* Montserrat-Italic.ttf in Resources */,
 				0E6389CA1FC3F5E400B58FBF /* Montserrat-BoldItalic.ttf in Resources */,
 				0E6389C71FC3F5DC00B58FBF /* Montserrat-Black.ttf in Resources */,
@@ -1154,11 +1159,11 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				0E6389D11FC3F5F500B58FBF /* Montserrat-LightItalic.ttf in Resources */,
 				0E6389D31FC3F5FA00B58FBF /* Montserrat-MediumItalic.ttf in Resources */,
+				E0FF96031FC42DC30017FE2B /* tangent-icon.jpg in Resources */,
 				0E6389CB1FC3F5E600B58FBF /* Montserrat-ExtraBold.ttf in Resources */,
 				0E6389D71FC3F60400B58FBF /* Montserrat-ThinItalic.ttf in Resources */,
 				0E6389C81FC3F5DF00B58FBF /* Montserrat-BlackItalic.ttf in Resources */,
 				0E6389D41FC3F5FD00B58FBF /* Montserrat-SemiBold.ttf in Resources */,
-				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				0E6389CD1FC3F5EC00B58FBF /* Montserrat-ExtraLight.ttf in Resources */,
 				0E6389D01FC3F5F300B58FBF /* Montserrat-Light.ttf in Resources */,
 				0E6389D81FC3F70500B58FBF /* Info.plist in Resources */,
@@ -1263,18 +1268,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13B07FB21A68108700A75B9A /* Base */,
-			);
-			name = LaunchScreen.xib;
-			path = MathSave;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1303,7 +1296,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.madhur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MathSave.app/MathSave";
 			};
@@ -1343,9 +1336,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = K65P9Z3374;
+				DEVELOPMENT_TEAM = 5M7MAFMP3Z;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
@@ -1353,13 +1347,14 @@
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
 				INFOPLIST_FILE = MathSave/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.madhur;
 				PRODUCT_NAME = MathSave;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1369,8 +1364,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = K65P9Z3374;
+				DEVELOPMENT_TEAM = 5M7MAFMP3Z;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
@@ -1378,13 +1374,14 @@
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 				);
 				INFOPLIST_FILE = MathSave/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.madhur;
 				PRODUCT_NAME = MathSave;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

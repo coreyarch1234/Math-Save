@@ -19,7 +19,10 @@ import Button from 'apsl-react-native-button';
 export default class ProblemView extends Component {
     static navigationOptions = {
         title: 'Problem',
-        headerLeft: null
+        headerLeft: null,
+        headerBackTitleStyle: {color: '#6c6cb2'},
+        headerStyle: { backgroundColor: '#fefefe' },
+        headerTitleStyle: { color: '#484848', fontFamily: 'Montserrat-SemiBold' }
     }
 
     constructor(props){

@@ -47,10 +47,10 @@ const MathTabs = TabNavigator({
     Home: {
         screen: HomeStack,
         navigationOptions: {
-            tabBarLabel: 'Home',
+            tabBarLabel: 'LIBRARY',
             tabBarIcon: ({tintColor}) => (
                 <Image
-                    source={require('./images/home.png')}
+                    source={require('./images/library.png')}
                     style={[styles.icon, {tintColor: tintColor}]}
                 />
             )
@@ -60,7 +60,7 @@ const MathTabs = TabNavigator({
     Camera: {
         screen: CameraStack,
         navigationOptions: {
-            tabBarLabel:'Camera',
+            tabBarLabel:'CAMERA',
             tabBarIcon: ({tintColor}) => (
                 <Image
                     source={require('./images/camera.png')}
@@ -75,15 +75,22 @@ const MathTabs = TabNavigator({
     tabBarPosition: 'bottom',
     animationEnabled: true,
     tabBarOptions: {
-      activeTintColor: '#e91e63',
-    },
+      activeTintColor: '#f05364',
+      inactiveTintColor: '#bbb',
+      inactiveBackgroundColor: '#fefefe',
+      activeBackgroundColor: '#fefefe',
+      labelStyle: {
+        fontSize: 9,
+        fontFamily: 'Montserrat-SemiBold'
+      },
+    }
 });
 
 
 const styles = {
     icon: {
-        width: 26,
-        height: 26,
+        width: 24,
+        height: 24,
     }
 }
 
