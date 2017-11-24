@@ -16,6 +16,7 @@ import Row from './row';
 export default class ProblemListScreen extends Component {
     static navigationOptions = {
         title: 'Library',
+        headerLeft: null
     };
 
     constructor(props){
@@ -24,7 +25,7 @@ export default class ProblemListScreen extends Component {
         this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
         this.state = {
-            dataSource: this.ds.cloneWithRows([{name: 'corey', title: 'the kid'}, {name: 'corina', title: 'the goat'}])
+            dataSource: this.ds.cloneWithRows([{name: '', title: ''}, {name: '', title: ''}])
         };
 
         this.move = this.props.navigation;

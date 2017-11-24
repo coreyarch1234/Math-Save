@@ -39,6 +39,7 @@ export default class CameraScreen extends Component<{}> {
             currentLatex: null,
             errorMessage: false
         }
+        console.log('THE CAMERA IS MOUNTED AGAIN');
         this.move = this.props.navigation;
         console.log('the navigate object is: ');
         console.log(this.move.navigate);
@@ -55,19 +56,6 @@ export default class CameraScreen extends Component<{}> {
             />
         )
     };
-
-    showErrorMessage(){
-        if (this.state.errorMessage){
-            return (
-                <Text style = {{fontSize: 20, color: 'yellow'}}>Take a clearer picture</Text>
-            )
-        }
-        else{
-            return (
-                <Text style = {{fontSize: 20, color: 'white'}}>Focus and snap!</Text>
-            )
-        }
-    }
 
     takePicture() {
 
@@ -102,38 +90,37 @@ export default class CameraScreen extends Component<{}> {
              }).then(response => response.json())
 
              .then((responseJson) => {
-                 console.log("THE RESPONSE JSON IS: ");
-                 console.log(responseJson);
-                 console.log("THE LATEX IS: ");
-                 console.log(responseJson.latex);
                  if (responseJson.latex == ''){
-                     this.setState({errorMessage: true});
                      return
                  }else{
-
                      var latex = responseJson.latex;
 
                      //change current latex
-                     this.setState({currentLatex: latex}, function(){
+                     this.setState({currentLatex: latex, errorMessage: false}, function(){
                          console.log("the current state is now: " + this.state.currentLatex);
                          //navigate to problem  info fields
                          console.log('test to see if you can print navigate here: ');
                          console.log(this.move);
+                         console.log(`============THE LATEX IS NOT EMPTY, SET ERROR MESSAGE TO ${this.state.errorMessage}========`)
                          this.move.navigate('Problem', {latex: this.state.currentLatex});
                      });
                      return responseJson;
+
                  }
              }).catch(err => console.error(err));
 
         }).catch(err => console.error(err));
     }
 
+    // {this.showErrorMessage()}
+
     render() {
         return (
           <View style={styles.container}>
-              <View style= {{height: 50, padding: 10}}>
-                  {this.showErrorMessage()}
+              <View style= {{height: 25, padding: 10}}>
+                  <Text style = {{fontSize: 10, color: 'yellow'}}>Focus the camera and shoot</Text>
               </View>
+
               <Camera
                  captureTarget={Camera.constants.CaptureTarget.memory}
                  ref={(cam) => {

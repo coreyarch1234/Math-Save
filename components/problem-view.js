@@ -50,6 +50,12 @@ export default class ProblemView extends Component {
                    onPress={() =>  this.move.navigate('Camera')}>
                    <Text style={styles.buttonText}>More</Text>
                </Button>
+               <Button
+                   style={styles.button}
+                   textStyle={{fontSize: 18}}
+                   onPress={() =>  this.move.navigate('ProblemList')}>
+                   <Text style={styles.buttonText}>Library</Text>
+               </Button>
             </View>
         )
     }

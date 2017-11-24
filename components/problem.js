@@ -18,6 +18,7 @@ import ProblemView from './problem-view';
 export default class Problem extends Component {
     static navigationOptions = {
         title: 'Add Detail',
+        headerLeft: null
     }
 
     constructor(props){
