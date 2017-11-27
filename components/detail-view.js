@@ -16,7 +16,11 @@ import layoutHTML from '../helpers/latex';
 
 export default class DetailView extends Component {
     static navigationOptions = {
-        title: 'Problem'
+        title: 'Problem',
+        headerBackTitleStyle: {color: '#6c6cb2'},
+        headerStyle: { backgroundColor: '#fefefe' },
+        headerTintColor: '#6c6cb2',
+        headerTitleStyle: { color: '#484848', fontFamily: 'Montserrat-SemiBold' }
     }
 
     constructor(props){
@@ -54,9 +58,8 @@ const styles = StyleSheet.create({
     containerHome: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     webView: {
         marginTop: 20,

@@ -48,6 +48,10 @@ export default class CameraScreen extends Component<{}> {
     static navigationOptions = {
         title: 'Camera',
         headerLeft: null,
+        headerBackTitleStyle: {color: '#6c6cb2'},
+        headerStyle: { backgroundColor: '#fefefe' },
+        headerTintColor: '#6c6cb2',
+        headerTitleStyle: { color: '#484848', fontFamily: 'Montserrat-SemiBold' },
         tabBarLabel: 'Camera',
         tabBarIcon: ({tintColor}) => (
             <Image
@@ -117,8 +121,8 @@ export default class CameraScreen extends Component<{}> {
     render() {
         return (
           <View style={styles.container}>
-              <View style= {{height: 25, padding: 10}}>
-                  <Text style = {{fontSize: 10, color: 'yellow'}}>Focus the camera and shoot</Text>
+              <View style= {{height: 30}}>
+                 <Text style = {{fontSize: 12, color: 'white', fontFamily:'Montserrat-Medium', paddingTop: 8}}>Focus your camera and take a picture!</Text>
               </View>
 
               <Camera
@@ -128,7 +132,10 @@ export default class CameraScreen extends Component<{}> {
                  }}
                  style={styles.preview}
                  aspect={Camera.constants.Aspect.fill}>
-                 <TouchableHighlight onPress={this.takePicture.bind(this)} >
+                 <TouchableHighlight onPress={this.takePicture.bind(this)}
+                 underlayColor='rgba(0,0,0,0.1)'
+                 style={{backgroundColor: 'rgba(0,0,0,0.0)'}}
+                 >
                     <Image
                         source={require('../images/circle.png')}
                         style={[styles.capture]}
@@ -145,7 +152,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#e67e22',
+        backgroundColor: '#6c6cb2',
     },
     icon: {
         width: 26,
@@ -162,8 +169,8 @@ const styles = StyleSheet.create({
         width: 60,
         height: 60,
         borderRadius: 5,
-        bottom: 40,
-        margin: 40,
+        bottom: 0,
+        margin: 20,
     },
     rectangle: {
         position: "absolute",

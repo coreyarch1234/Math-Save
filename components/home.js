@@ -14,7 +14,8 @@ export default class Home extends Component {
     static navigationOptions = {
         title: 'Home',
         tabBarVisible: false,
-        header: null
+        header: null,
+        headerBackTitleStyle: {color: '#6c6cb2'},
 
 
     };
@@ -26,11 +27,17 @@ export default class Home extends Component {
         console.log(this.move.navigate);
 
     }
-
+    // <Image
+    //      style={styles.welcomeImage}
+    //      source={require('../images/home.png')}
+    // />
     render() {
         return(
-            <View>
-                <View style={styles.container} >
+             <View style={styles.welcomeView}>
+                <View style={styles.welcomeImageContainer} >
+
+                </View>
+                <View style={styles.welcomeMessageContainer} >
                     <Text style={styles.title}>Welcome to Tangent!</Text>
                     <Text style={styles.subtitle}>Our app allows you to convert hand-written math equations to digital text.</Text>
                     <Button
@@ -58,21 +65,26 @@ export default class Home extends Component {
 // />
 
 const styles = StyleSheet.create({
-    container: {
+    welcomeView: {
+        flex: 1,
+        backgroundColor: 'white'
+    },
+    welcomeImageContainer: {
+        marginTop: '5%',
+        marginBottom: '5%',
         position: 'absolute',
-        marginTop: 504,
-        paddingTop: 10,
-        paddingBottom: 10,
-        paddingLeft: 10,
-        paddingRight: 10,
+        padding: '5%',
         width: '100%'
     },
-    containerHome: {
-        flex: 1,
-        backgroundColor: '#3498db',
-        alignItems: 'center',
-        justifyContent: 'center',
+    welcomeImage: {
+        position: 'absolute',
+        marginTop: '123%',
+        padding: '5%',
+        width: '100%'
     },
+
+
+
     buttonText: {
         color: 'white',
         alignSelf: 'center',
@@ -103,7 +115,7 @@ const styles = StyleSheet.create({
           alignSelf: 'center',
           justifyContent: 'center',
           textAlign: 'center',
-          marginBottom: 30
+          marginBottom: 20
       }
 
 });

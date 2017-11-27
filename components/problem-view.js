@@ -19,7 +19,11 @@ import Button from 'apsl-react-native-button';
 export default class ProblemView extends Component {
     static navigationOptions = {
         title: 'Problem',
-        headerLeft: null
+        headerLeft: null,
+        headerBackTitleStyle: {color: '#6c6cb2'},
+        headerStyle: { backgroundColor: '#fefefe' },
+        headerTintColor: '#6c6cb2',
+        headerTitleStyle: { color: '#484848', fontFamily: 'Montserrat-SemiBold' }
     }
 
     constructor(props){
@@ -82,8 +86,8 @@ const styles = StyleSheet.create({
         height: 36,
         width: 100,
         bottom: 200,
-        backgroundColor: '#48BBEC',
-        borderColor: '#48BBEC',
+        backgroundColor: '#6c6cb2',
+        borderColor: '#6c6cb2',
         borderWidth: 1,
         borderRadius: 8,
         alignSelf: 'center',

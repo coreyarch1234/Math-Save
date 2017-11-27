@@ -50,7 +50,7 @@ const MathTabs = TabNavigator({
             tabBarLabel: 'LIBRARY',
             tabBarIcon: ({tintColor}) => (
                 <Image
-                    source={require('./images/library.png')}
+                    source={require('./images/home.png')}
                     style={[styles.icon, {tintColor: tintColor}]}
                 />
             )
