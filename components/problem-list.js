@@ -6,7 +6,8 @@ import {
   Button,
   View,
   ListView,
-  TouchableHighlight
+  TouchableHighlight,
+  AsyncStorage
 } from 'react-native';
 
 import Row from './row';
@@ -28,6 +29,7 @@ export default class ProblemListScreen extends Component {
             dataSource: this.ds.cloneWithRows([{name: '', title: ''}, {name: '', title: ''}])
         };
 
+
         this.move = this.props.navigation;
         console.log('the navigation is problem list: ');
         console.log(this.move.navigate);
@@ -36,20 +38,19 @@ export default class ProblemListScreen extends Component {
 
 
     componentWillMount(){
+
+        //JUST CALL LOCAL STORAGE
         console.log('COMPONENT MOUNTED AGAIN!!!!!!!!');
-        //call server for array of problem posts. set datasource state.
-        fetch('https://ancient-atoll-47438.herokuapp.com/', {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          }
-        }).then(response => response.json())
-        .then((responseJson) => {
-            console.log('$$$$$ THE JSON IS: $$$$$');
-            console.log(responseJson);
-            this.setState({dataSource: this.ds.cloneWithRows(responseJson)});
-        }).catch(err => console.error(err));
+        AsyncStorage.getItem('problemArray').then((value) => {
+            let valueOfArray = (value === null ? null : JSON.parse(value));
+            console.log(`THE VALUE OF THE LOCAL STORAGE PROBLEM ARRAY IS: ${valueOfArray}`);
+            if (valueOfArray === null){
+                console.log('VALUE OF ARRAY IS NULL');
+            }else{
+                console.log(`the first problem is: ${valueOfArray[0]}`);
+                this.setState({dataSource: this.ds.cloneWithRows(valueOfArray)});
+            }
+        })
     }
 
     _pressRow(row, title, topic, renderedLatex) {
