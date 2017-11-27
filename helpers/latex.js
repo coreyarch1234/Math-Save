@@ -4,6 +4,8 @@ module.exports = (title, topic, latex) => {
     <html>
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <!--Google Fonts-->
+            <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
             <!-- latex styling -->
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
               <!-- katex rendering  -->
@@ -18,51 +20,51 @@ module.exports = (title, topic, latex) => {
                 padding: 0;
             }
             html, body {
-                background-color: white;
-                font-family: 'Avenir-Black';
-                font-size: 18px;
-            }
-            .heading-container{
-
-            }
-            #title{
-                text-align: center;
-                padding-bottom: 1em;
-                font-weight: 700;
-                color: black;
-
-            }
-            #latexElement {
-                text-align: center;
-                font-weight: 400;
-                padding-bottom: 1em;
+                font-family: 'Montserrat';
+                padding-top: 20px;
+                padding-left: 15px;
+                padding-right: 15px;
 
             }
             #topic{
-                text-align: center;
-                padding-bottom: 2em;
-                font-weight: lighter;
-                font-style: italic;
-                color: black;
-
+                font-weight: 700;
+                color: #232323;
+                font-size: 18px;
 
             }
+            #title{
+                font-weight: 400;
+                font-size: 15px;
+                color: #686868;
+                margin-bottom: 20px;
+            }
+            #latexElement {
+                text-align: center;
+                font-size: 5vw;
+                width: 90%;
+                padding: 20px 15px;
+                border: 2px dashed #6c6cb2;
+            }
+            /*#latexElement .katex {
+              background-color: blue;
+              padding: 10px 15px;
+            }*/
         </style>
 
         <body>
             <div class= 'heading-container'>
+                <h2 id='topic'>
+                    ${topic}
+                </h2>
                 <h1 id='title'>
                     ${title}
                 </h1>
                 <div id='latexElement'>
                     ${latex}
                 </div>
-                <h2 id='topic'>
-                    ${topic}
-                </h2>
             </div>
         </body>
-        
+
 
     </html>`
     )

@@ -19,6 +19,7 @@ export default class DetailView extends Component {
         title: 'Problem',
         headerBackTitleStyle: {color: '#6c6cb2'},
         headerStyle: { backgroundColor: '#fefefe' },
+        headerTintColor: '#6c6cb2',
         headerTitleStyle: { color: '#484848', fontFamily: 'Montserrat-SemiBold' }
     }
 
@@ -57,7 +58,6 @@ const styles = StyleSheet.create({
     containerHome: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },

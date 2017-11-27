@@ -47,7 +47,9 @@ export default class CameraScreen extends Component<{}> {
     static navigationOptions = {
         title: 'Camera',
         headerLeft: null,
+        headerBackTitleStyle: {color: '#6c6cb2'},
         headerStyle: { backgroundColor: '#fefefe' },
+        headerTintColor: '#6c6cb2',
         headerTitleStyle: { color: '#484848', fontFamily: 'Montserrat-SemiBold' },
         tabBarLabel: 'Camera',
         tabBarIcon: ({tintColor}) => (
@@ -143,7 +145,11 @@ export default class CameraScreen extends Component<{}> {
                  }}
                  style={styles.preview}
                  aspect={Camera.constants.Aspect.fill}>
-                 <TouchableHighlight onPress={this.takePicture.bind(this)} >
+                 <TouchableHighlight
+                 onPress={this.takePicture.bind(this)}
+                 underlayColor='rgba(0,0,0,0.1)'
+                 style={{backgroundColor: 'rgba(0,0,0,0.0)'}}
+                 >
                     <Image
                         source={require('../images/circle3.png')}
                         style={[styles.capture]}

@@ -9,7 +9,6 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import Row from './row';
 //list view that gets data from server heroku problems
 //passses this data as props to render row
 
@@ -18,6 +17,7 @@ export default class ProblemListScreen extends Component {
         title: 'Library',
         headerStyle: { backgroundColor: '#fefefe' },
         headerBackTitleStyle: {color: '#6c6cb2'},
+        headerTintColor: '#6c6cb2',
         headerTitleStyle: { color: '#484848', fontFamily: 'Montserrat-SemiBold' }
     };
 
@@ -58,28 +58,22 @@ export default class ProblemListScreen extends Component {
       console.log('This row was tapped: => ', row);
       this.move.navigate('DetailScreen', { title, topic, renderedLatex });
     }
-
     _renderRow(rowData, section, row) {
       const title = rowData.title;
       const topic = rowData.topic;
       const renderedLatex = rowData.renderedLatex;
+      const COLORS = ['red', 'green', 'blue', 'yellow'];
       return (
-          <TouchableHighlight onPress={() => this._pressRow(row, title, topic, renderedLatex)}>
-              <View style={styles.containerRow}>
-                  <View style={styles.containerColumn}>
-                      <View>
-                          <Text style={styles.text}>
-                              {title}
-                          </Text>
-                      </View>
-                  </View>
-                  <View style={styles.containerColumn}>
-                      <View>
-                          <Text style={styles.text}>
-                              {topic}
-                          </Text>
-                      </View>
-                  </View>
+          <TouchableHighlight onPress={() => this._pressRow(row, title, topic, renderedLatex)}
+          underlayColor='rgba(0,0,0,0.1)'
+          style={styles.touchableStyle}>
+              <View style={styles.headingContainer}>
+                  <Text style={styles.title}>
+                      {title}
+                  </Text>
+                  <Text style={styles.topic}>
+                      {topic}
+                  </Text>
               </View>
           </TouchableHighlight>
       )
@@ -187,10 +181,11 @@ export default class ProblemListScreen extends Component {
 //
 // }
 
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: '#efefef',
     },
     separator: {
         flex: 1,
@@ -219,5 +214,27 @@ const styles = StyleSheet.create({
       width: 40,
       borderRadius: 20,
     },
+    touchableStyle: {
+      backgroundColor: '#fefefe',
+      width: '100%',
+      marginRight: 'auto',
+      marginLeft: 'auto',
+      marginTop: .5,
+      marginBottom: .5
+    },
+    headingContainer: {
+      paddingLeft: 30,
+      paddingTop: 20,
+      paddingBottom: 15,
+    },
+    title: {
+      fontFamily: 'Montserrat-SemiBold',
+      fontSize: 18,
+      color: "#484848"
+    },
+    topic: {
+      fontFamily: 'Montserrat-Light',
+      fontSize: 15
+    }
 
 });

@@ -21,6 +21,7 @@ export default class Problem extends Component {
         headerLeft: null,
         headerBackTitleStyle: {color: '#6c6cb2'},
         headerStyle: { backgroundColor: '#fefefe' },
+        headerTintColor: '#6c6cb2',
         headerTitleStyle: { color: '#484848', fontFamily: 'Montserrat-SemiBold' }
     }
 

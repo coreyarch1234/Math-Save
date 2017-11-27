@@ -14,7 +14,8 @@ export default class Home extends Component {
     static navigationOptions = {
         title: 'Home',
         tabBarVisible: false,
-        header: null
+        header: null,
+        headerBackTitleStyle: {color: '#6c6cb2'},
 
 
     };
