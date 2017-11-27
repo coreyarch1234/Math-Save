@@ -27,7 +27,10 @@ export default class Home extends Component {
         console.log(this.move.navigate);
 
     }
-
+    // <Image
+    //      style={styles.welcomeImage}
+    //      source={require('../images/home.png')}
+    // />
     render() {
         return(
             <View style={styles.welcomeView}>
@@ -90,6 +93,9 @@ const styles = StyleSheet.create({
         padding: '5%',
         width: '100%'
     },
+
+
+
     buttonText: {
         color: 'white',
         alignSelf: 'center',

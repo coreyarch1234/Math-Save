@@ -58,8 +58,9 @@ module.exports = (title, topic, latex) => {
                 </h2>
                 <h1 id='title'>
                     ${title}
-                </h1>
-                <div id='latexElement'>
+                 </h1>
+
+                 <div id='latexElement'>
                     ${latex}
                 </div>
             </div>

@@ -5,7 +5,8 @@ import {
   Text,
   Button,
   View,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  AsyncStorage,
 } from 'react-native';
 
 //Problem info
@@ -34,6 +35,18 @@ export default class Problem extends Component {
         this.latex = this.props.navigation.state.params.latex; //contains the latex
 
         this.move = this.props.navigation; //to send html in navigate
+    }
+
+    saveDataToLocal(problem) {
+        AsyncStorage.getItem('problemArray').then((value) => {
+            let valueOfArray = (value === null ? null : JSON.parse(value));
+            console.log(`THE VALUE OF THE LOCAL STORAGE PROBLEM ARRAY IS: ${valueOfArray}`);
+            if (valueOfArray === null){
+                AsyncStorage.setItem('problemArray', JSON.stringify([problem]));
+            }else{
+                AsyncStorage.setItem('problemArray', JSON.stringify([...valueOfArray, problem]));
+            }
+        })
     }
 
     render() {
@@ -66,6 +79,15 @@ export default class Problem extends Component {
                                 })
                                 }).then(response => response.json())
                                 .then((responseJson) => {
+                                    //SAVE TO LOCAL STORAGE THEN NAVIGATE
+                                    var problem = {
+                                        title: responseJson.problem.title,
+                                        topic: responseJson.problem.topic,
+                                        latex: this.latex,
+                                        renderedLatex: responseJson.renderedLatex
+                                    }
+                                    this.saveDataToLocal(problem);
+
                                     console.log('THE RESPONSE FROM THE SERVER: ');
                                     console.log(responseJson);
                                     this.move.navigate('ProblemView', {

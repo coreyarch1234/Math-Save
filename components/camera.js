@@ -39,6 +39,7 @@ export default class CameraScreen extends Component<{}> {
             currentLatex: null,
             errorMessage: false
         }
+        console.log('THE CAMERA IS MOUNTED AGAIN');
         this.move = this.props.navigation;
         console.log('the navigate object is: ');
         console.log(this.move.navigate);
@@ -59,19 +60,6 @@ export default class CameraScreen extends Component<{}> {
             />
         )
     };
-
-    showErrorMessage(){
-        if (this.state.errorMessage){
-            return (
-                <Text style = {{fontSize: 12, color: 'white', fontFamily:'Montserrat-Medium', paddingLeft: '100%', paddingRight: '100%', paddingBottom: 8, paddingTop: 7, backgroundColor: '#f05364'}}>Refocus your camera and try again!</Text>
-            )
-        }
-        else{
-            return (
-                <Text style = {{fontSize: 12, color: 'white', fontFamily:'Montserrat-Medium', paddingTop: 8}}>Focus your camera and take a picture!</Text>
-            )
-        }
-    }
 
     takePicture() {
 
@@ -106,38 +94,37 @@ export default class CameraScreen extends Component<{}> {
              }).then(response => response.json())
 
              .then((responseJson) => {
-                 console.log("THE RESPONSE JSON IS: ");
-                 console.log(responseJson);
-                 console.log("THE LATEX IS: ");
-                 console.log(responseJson.latex);
                  if (responseJson.latex == ''){
-                     this.setState({errorMessage: true});
                      return
                  }else{
-
                      var latex = responseJson.latex;
 
                      //change current latex
-                     this.setState({currentLatex: latex}, function(){
+                     this.setState({currentLatex: latex, errorMessage: false}, function(){
                          console.log("the current state is now: " + this.state.currentLatex);
                          //navigate to problem  info fields
                          console.log('test to see if you can print navigate here: ');
                          console.log(this.move);
+                         console.log(`============THE LATEX IS NOT EMPTY, SET ERROR MESSAGE TO ${this.state.errorMessage}========`)
                          this.move.navigate('Problem', {latex: this.state.currentLatex});
                      });
                      return responseJson;
+
                  }
              }).catch(err => console.error(err));
 
         }).catch(err => console.error(err));
     }
 
+    // {this.showErrorMessage()}
+
     render() {
         return (
           <View style={styles.container}>
               <View style= {{height: 30}}>
-                  {this.showErrorMessage()}
+                 <Text style = {{fontSize: 12, color: 'white', fontFamily:'Montserrat-Medium', paddingTop: 8}}>Focus your camera and take a picture!</Text>
               </View>
+
               <Camera
                  captureTarget={Camera.constants.CaptureTarget.memory}
                  ref={(cam) => {
@@ -145,8 +132,7 @@ export default class CameraScreen extends Component<{}> {
                  }}
                  style={styles.preview}
                  aspect={Camera.constants.Aspect.fill}>
-                 <TouchableHighlight
-                 onPress={this.takePicture.bind(this)}
+                 <TouchableHighlight onPress={this.takePicture.bind(this)}
                  underlayColor='rgba(0,0,0,0.1)'
                  style={{backgroundColor: 'rgba(0,0,0,0.0)'}}
                  >

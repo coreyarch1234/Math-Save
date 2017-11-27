@@ -80,10 +80,10 @@ const MathTabs = TabNavigator({
       inactiveBackgroundColor: '#fefefe',
       activeBackgroundColor: '#fefefe',
       labelStyle: {
-        fontSize: 9,
-        fontFamily: 'Montserrat-SemiBold'
+          fontSize: 9,
+          fontFamily: 'Montserrat-SemiBold'
       },
-    }
+    },
 });
 
 
