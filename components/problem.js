@@ -44,7 +44,7 @@ export default class Problem extends Component {
             if (valueOfArray === null){
                 AsyncStorage.setItem('problemArray', JSON.stringify([problem]));
             }else{
-                AsyncStorage.setItem('problemArray', JSON.stringify([...valueOfArray, problem]));
+                AsyncStorage.setItem('problemArray', JSON.stringify([problem, ...valueOfArray]));
             }
         })
     }

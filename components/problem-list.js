@@ -29,7 +29,7 @@ export default class ProblemListScreen extends Component {
         this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
         this.state = {
-            dataSource: this.ds.cloneWithRows([{name: '', title: ''}, {name: '', title: ''}])
+            dataSource: this.ds.cloneWithRows([{title: 'Tap on Camera 📷', topic: 'Take picture of your first equation!'}, {title: 'We save your posts 📫', topic: 'Come back here to see them!'}])
         };
 
 
@@ -58,7 +58,11 @@ export default class ProblemListScreen extends Component {
 
     _pressRow(row, title, topic, renderedLatex) {
       console.log('This row was tapped: => ', row);
-      this.move.navigate('DetailScreen', { title, topic, renderedLatex });
+      if (renderedLatex === undefined) {
+        return
+      }else{
+        this.move.navigate('DetailScreen', { title, topic, renderedLatex });
+      }
     }
     _renderRow(rowData, section, row) {
       const title = rowData.title;
@@ -90,6 +94,7 @@ export default class ProblemListScreen extends Component {
               style={styles.container}
               dataSource={this.state.dataSource}
               renderRow={this._renderRow.bind(this)}
+              removeClippedSubviews={false}
             />
         )
     }

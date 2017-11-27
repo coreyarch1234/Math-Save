@@ -49,16 +49,16 @@ export default class ProblemView extends Component {
                     style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height}}
                />
                <Button
-                   style={styles.button}
-                   textStyle={{fontSize: 18}}
-                   onPress={() =>  this.move.navigate('Camera')}>
-                   <Text style={styles.buttonText}>More</Text>
-               </Button>
-               <Button
-                   style={styles.button}
+                   style={styles.libraryButton}
                    textStyle={{fontSize: 18}}
                    onPress={() =>  this.move.navigate('ProblemList')}>
-                   <Text style={styles.buttonText}>Library</Text>
+                   <Text style={styles.libraryButtonText}>Back to Library</Text>
+               </Button>
+               <Button
+                   style={styles.moreButton}
+                   textStyle={{fontSize: 18}}
+                   onPress={() =>  this.move.navigate('Camera')}>
+                   <Text style={styles.moreButtonText}>Take Another Picture</Text>
                </Button>
             </View>
         )
@@ -78,13 +78,33 @@ const styles = StyleSheet.create({
         maxHeight: 200,
         width: 320,
     },
-    buttonText: {
+    moreButtonText: {
+        fontSize: 15,
+        color: '#6c6cb2',
+        fontFamily: 'Montserrat-SemiBold'
+    },
+    libraryButtonText: {
         fontSize: 15,
         color: 'white',
+        fontFamily: 'Montserrat-SemiBold'
     },
-    button: {
+    moreButton: {
         height: 36,
-        width: 100,
+        paddingRight: 25,
+        paddingLeft: 25,
+        bottom: 200,
+        backgroundColor: '#fff',
+        borderColor: '#6c6cb2',
+        borderWidth: 2,
+        borderRadius: 8,
+        alignSelf: 'center',
+        justifyContent: 'center'
+
+    },
+    libraryButton: {
+        height: 36,
+        paddingRight: 50,
+        paddingLeft: 50,
         bottom: 200,
         backgroundColor: '#6c6cb2',
         borderColor: '#6c6cb2',
@@ -93,5 +113,5 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         justifyContent: 'center'
 
-  }
+    },
 });

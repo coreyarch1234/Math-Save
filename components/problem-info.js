@@ -54,6 +54,7 @@ const styles = {
     buttonText: {
         fontSize: 18,
         color: 'white',
+        fontFamily: 'Montserrat-SemiBold',
         alignSelf: 'center',
         textAlign: 'center'
     },
