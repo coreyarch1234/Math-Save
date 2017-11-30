@@ -19,6 +19,10 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 
 import { Icon } from 'react-native-elements';
 
+import keys from '../keys.js';
+const api_id = keys.api_id;
+const api_key = keys.api_key;
+
 //variables/constants
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -78,8 +82,8 @@ export default class CameraScreen extends Component<{}> {
             fetch('https://api.mathpix.com/v3/latex', {
                  method: 'POST',
                  headers: {
-                   'app_id': 'corey_harrilal_students_makeschool_com',
-                   'app_key': 'ddd5a182cfbd8d0a170c',
+                   'app_id': api_id,
+                   'app_key': api_key,
                    'Accept': 'application/json',
                    'Content-Type': 'application/json'
                  },
