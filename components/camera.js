@@ -19,6 +19,8 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 
 import { Icon } from 'react-native-elements';
 
+import Spinner from 'react-native-loading-spinner-overlay';
+
 import keys from '../keys.js';
 const api_id = keys.api_id;
 const api_key = keys.api_key;
@@ -41,7 +43,9 @@ export default class CameraScreen extends Component<{}> {
         super(props);
         this.state = {
             currentLatex: null,
-            errorMessage: false
+            errorMessage: false,
+            didTakePhoto: false,
+            visible: false
         }
         console.log('THE CAMERA IS MOUNTED AGAIN');
         this.move = this.props.navigation;
@@ -65,7 +69,14 @@ export default class CameraScreen extends Component<{}> {
         )
     };
 
+    toggleLoading() {
+        const { didTakePhoto } = this.state;
+        this.setState({ didTakePhoto: !didTakePhoto });
+    }
+
     takePicture() {
+        //when take photo, show loading screen
+        // this.toggleLoading();
 
         this.camera.capture().then((data) => {
 
@@ -96,7 +107,6 @@ export default class CameraScreen extends Component<{}> {
                  })
 
              }).then(response => response.json())
-
              .then((responseJson) => {
                  if (responseJson.latex == ''){
                      return
@@ -120,7 +130,57 @@ export default class CameraScreen extends Component<{}> {
         }).catch(err => console.error(err));
     }
 
-    // {this.showErrorMessage()}
+    // loadingOrCamera(){
+    //     if (this.state.didTakePhoto){
+    //         return (
+    //              <Text>Loading...</Text>
+    //         )
+    //     }else{
+    //         return (
+               //  <Camera
+               //     captureTarget={Camera.constants.CaptureTarget.memory}
+               //     ref={(cam) => {
+               //       this.camera = cam;
+               //     }}
+               //     style={styles.preview}
+               //     aspect={Camera.constants.Aspect.fill}>
+               //     <TouchableHighlight onPress={this.takePicture.bind(this)}
+               //     underlayColor='rgba(0,0,0,0.1)'
+               //     style={{backgroundColor: 'rgba(0,0,0,0.0)'}}
+               //     >
+               //        <Image
+               //            source={require('../images/circle3.png')}
+               //            style={[styles.capture]}
+               //        />
+               //    </TouchableHighlight>
+               // </Camera>
+    //         )
+    //     }
+    // }
+
+    loadingOrCamera(){
+        if (this.state.didTakePhoto){
+            return (
+                <View style={{ flex: 1 }}>
+                    <Spinner visible={this.state.visible} textContent={"Loading..."} textStyle={{color: '#FFF'}} />
+                </View>
+            )
+        }else{
+            return (
+                <TouchableHighlight onPress={this.takePicture.bind(this)}
+                    underlayColor='rgba(0,0,0,0.1)'
+                    style={{backgroundColor: 'rgba(0,0,0,0.0)'}}
+                    >
+                    <View style={{width: 60, height: 60,}}>
+                        <Icon
+                            name='camera'
+                            style={{backgroundColor: 'green'}}
+                         />
+                    </View>
+                 </TouchableHighlight>
+            )
+        }
+    }
 
     render() {
         return (
@@ -128,7 +188,6 @@ export default class CameraScreen extends Component<{}> {
               <View style= {{height: 30}}>
                  <Text style = {{fontSize: 12, color: 'white', fontFamily:'Montserrat-Medium', paddingTop: 8}}>Focus your camera and take a picture!</Text>
               </View>
-
               <Camera
                  captureTarget={Camera.constants.CaptureTarget.memory}
                  ref={(cam) => {
@@ -146,6 +205,8 @@ export default class CameraScreen extends Component<{}> {
                     />
                 </TouchableHighlight>
              </Camera>
+
+
           </View>
         );
     }
