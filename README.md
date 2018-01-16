@@ -15,13 +15,13 @@ We aim to further our goals by actively developing the following features in our
 3. Generate practice tests from math problems in your library.
 
 
-![ScreenShot](https://i.imgur.com/7rLxAHYh.png)
+![ScreenShot](https://i.imgur.com/7rLxAHYl.png)
 
-![ScreenShot](https://i.imgur.com/OWFDFz2h.png)
+![ScreenShot](https://i.imgur.com/OWFDFz2l.png)
 
 ![ScreenShot](https://i.imgur.com/dMlbVosl.png)
 
-![ScreenShot](https://i.imgur.com/6iM16Izh.png)
+![ScreenShot](https://i.imgur.com/6iM16Izl.png)
 
 # Technology and Process
 
