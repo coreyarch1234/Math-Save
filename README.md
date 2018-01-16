@@ -15,11 +15,11 @@ We aim to further our goals by actively developing the following features in our
 3. Generate practice tests from math problems in your library.
 
 
-![ScreenShot](https://i.imgur.com/7rLxAHY.png)
+![ScreenShot](https://i.imgur.com/7rLxAHYh.png)
 
-![ScreenShot](https://i.imgur.com/OWFDFz2.png)
+![ScreenShot](https://i.imgur.com/OWFDFz2h.png)
 
-![ScreenShot](https://i.imgur.com/dMlbVos.png)
+![ScreenShot](https://i.imgur.com/dMlbVosh.png)
 
 ![ScreenShot](https://i.imgur.com/6iM16Izh.png)
 
