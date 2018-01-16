@@ -4,8 +4,8 @@ Tangent is an iOS app that allows you to convert handwritten math equations from
 
 # How it works
 
-We want to help you better document your notes digitally.
-We have made the transfer process as easy as snapping a picture.
+I want to help you better document your notes digitally.
+I have made the transfer process as easy as snapping a picture.
 
 Simply, take a picture of the specific equations or math problems from your notes and Tangent converts the image to text on your phone.
 
@@ -15,13 +15,13 @@ We aim to further our goals by actively developing the following features in our
 3. Generate practice tests from math problems in your library.
 
 
-![ScreenShot](https://i.imgur.com/7rLxAHY.png)
+![ScreenShot](https://i.imgur.com/7rLxAHY.png | width=100)
 
-![ScreenShot](https://i.imgur.com/OWFDFz2.png)
+![ScreenShot](https://i.imgur.com/OWFDFz2.png | width=100)
 
-![ScreenShot](https://i.imgur.com/dMlbVos.png)
+![ScreenShot](https://i.imgur.com/dMlbVos.png | width=100)
 
-![ScreenShot](https://i.imgur.com/6iM16Iz.png)
+![ScreenShot](https://i.imgur.com/6iM16Iz.png | width=100)
 
 # Technology and Process
 
