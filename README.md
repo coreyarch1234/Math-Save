@@ -21,7 +21,7 @@ We aim to further our goals by actively developing the following features in our
 
 ![ScreenShot](https://i.imgur.com/dMlbVos.png)
 
-![ScreenShot](https://i.imgur.com/6iM16Izs.png)
+![ScreenShot](https://i.imgur.com/6iM16Izm.png)
 
 # Technology and Process
 
