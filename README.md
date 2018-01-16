@@ -12,7 +12,7 @@ Simply, take a picture of the specific equations or math problems from your note
 We aim to further our goals by actively developing the following features in our upcoming updates:
 1. Copy and paste equations by pressing 1 button.
 2. Search through math problems you have saved.
-3. Generate practice tests from math problems in your library.
+3. Generate practice tests from math problems in your library
 
 
 ![ScreenShot](https://i.imgur.com/7rLxAHY.png)
