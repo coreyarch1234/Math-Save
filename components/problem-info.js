@@ -38,9 +38,7 @@ export default class ProblemInfo extends React.Component {
                 textStyle={{fontSize: 18}}
                 onPress={() => {
                     this.loadingToggle();
-                    this.props.onSubmit(this.state.title, this.state.topic, function(){
-                        this.loadingToggle();
-                    });
+                    this.props.onSubmit(this.state.title, this.state.topic);
                 }}>
                 <Text style={styles.buttonText}>Save</Text>
             </Button>

@@ -598,6 +598,18 @@
 				796D241BBE164472A8E3D406 /* libRCTImageResizer.a */,
 				2F00D14B0D4C443E8E50D0EC /* libRNFS.a */,
 				DBBB020ECE1A44DDB8033AB0 /* libRNEnvironment.a */,
+				57037B8B92334F08808C8C3D /* libRNVectorIcons.a */,
+				7A3FE6F123C84793AFB22C38 /* Entypo.ttf */,
+				B0F5C5F20D30453696F86579 /* EvilIcons.ttf */,
+				8D90525B8CBA4140908945B0 /* Feather.ttf */,
+				92C6C364B5FF48A097328832 /* FontAwesome.ttf */,
+				D9D6CC3B79974DD08A968084 /* Foundation.ttf */,
+				B4F91E2DB34247DAB6B55DCD /* Ionicons.ttf */,
+				E6EBEB34639F44D6B115C10D /* MaterialCommunityIcons.ttf */,
+				26799A431FBE413D8CBDC912 /* MaterialIcons.ttf */,
+				343AFC16C323497EB4FFD036 /* Octicons.ttf */,
+				8863D78E49D840E38873EDA1 /* SimpleLineIcons.ttf */,
+				8C7333867A834281A54687A0 /* Zocial.ttf */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -748,24 +760,6 @@
 				2D02E4901E0B4A5D006451C7 /* MathSave-tvOSTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		96CD076C3CE544D3BA705A8A /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				7A3FE6F123C84793AFB22C38 /* Entypo.ttf */,
-				B0F5C5F20D30453696F86579 /* EvilIcons.ttf */,
-				8D90525B8CBA4140908945B0 /* Feather.ttf */,
-				92C6C364B5FF48A097328832 /* FontAwesome.ttf */,
-				D9D6CC3B79974DD08A968084 /* Foundation.ttf */,
-				B4F91E2DB34247DAB6B55DCD /* Ionicons.ttf */,
-				E6EBEB34639F44D6B115C10D /* MaterialCommunityIcons.ttf */,
-				26799A431FBE413D8CBDC912 /* MaterialIcons.ttf */,
-				343AFC16C323497EB4FFD036 /* Octicons.ttf */,
-				8863D78E49D840E38873EDA1 /* SimpleLineIcons.ttf */,
-				8C7333867A834281A54687A0 /* Zocial.ttf */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		ADBDB9201DFEBF0600ED6528 /* Products */ = {
@@ -1425,7 +1419,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MathSave.app/MathSave";
 			};
