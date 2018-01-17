@@ -19,6 +19,8 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 
 import { Icon } from 'react-native-elements';
 
+import Spinner from 'react-native-loading-spinner-overlay';
+
 import keys from '../keys.js';
 const api_id = keys.api_id;
 const api_key = keys.api_key;
@@ -41,7 +43,8 @@ export default class CameraScreen extends Component<{}> {
         super(props);
         this.state = {
             currentLatex: null,
-            errorMessage: false
+            errorMessage: false,
+            visible: false
         }
         console.log('THE CAMERA IS MOUNTED AGAIN');
         this.move = this.props.navigation;
@@ -65,7 +68,34 @@ export default class CameraScreen extends Component<{}> {
         )
     };
 
+    loadingToggle() {
+        var visible = this.state.visible;
+        console.log(`LOADING ON VALUE IS BEFORE ${visible}`);
+        console.log('LOADING TOGGLE HAS BEEN REACHED');
+        this.setState({visible: !visible});
+    }
+
+    loadingDisplay() {
+        if (this.state.visible) {
+            return (
+                <View style= {{height: 30}}>
+                   <Spinner visible={this.state.visible} textContent={"Processing..."} textStyle={{color: '#6c6cb2', fontSize: 16, color: 'white', fontFamily:'Montserrat-Medium'}} />
+                </View>
+            )
+        }
+        return (
+            <View style= {{height: 30}}>
+               <Text style = {{fontSize: 12, color: 'white', fontFamily:'Montserrat-Medium', paddingTop: 8}}>Focus your camera and take a picture!</Text>
+            </View>
+        )
+
+    }
+
     takePicture() {
+        // show spinner
+        console.log(`LOADING ON VALUE IS BEFORE ${this.state.visible}`);
+        this.loadingToggle();
+        console.log(`LOADING ON VALUE IS NOW AFTER ${this.state.visible}`);
 
         this.camera.capture().then((data) => {
 
@@ -78,6 +108,8 @@ export default class CameraScreen extends Component<{}> {
             return  RNFS.readFile(response.uri.substring(7), "base64")
 
         }).then((res) => {
+            // show spinner
+            // this.loadingToggle();
 
             fetch('https://api.mathpix.com/v3/latex', {
                  method: 'POST',
@@ -98,6 +130,10 @@ export default class CameraScreen extends Component<{}> {
              }).then(response => response.json())
 
              .then((responseJson) => {
+
+                 // Turn off spinner before navigate to next
+                 this.loadingToggle();
+
                  if (responseJson.latex == ''){
                      return
                  }else{
@@ -125,10 +161,7 @@ export default class CameraScreen extends Component<{}> {
     render() {
         return (
           <View style={styles.container}>
-              <View style= {{height: 30}}>
-                 <Text style = {{fontSize: 12, color: 'white', fontFamily:'Montserrat-Medium', paddingTop: 8}}>Focus your camera and take a picture!</Text>
-              </View>
-
+              {this.loadingDisplay()}
               <Camera
                  captureTarget={Camera.constants.CaptureTarget.memory}
                  ref={(cam) => {

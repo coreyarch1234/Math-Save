@@ -1,8 +1,28 @@
-# Math-Save
-This app allows you to take handwritten math equations and convert it to a nicely designed digital format.
+Tangent is an iOS app that allows you to convert handwritten math equations from your notes to beautifully typed digital text.
 
-This is most helpful for students taking math classes that want to save problems to study later. This is a work in progress.
+# How it works
 
-Uses powerful OCR technology to convert handwritten math problems to a beautifully typed format.
+I want to help you better document your notes digitally.
+I have made the transfer process as easy as snapping a picture.
 
-Built with React Native, Node.js and MongoDB. Used KaTeX, Khan Academy’s Javascript Library for Tex math rendering.
+Simply, take a picture of the specific equations or math problems from your notes and Tangent converts the image to text on your phone.
+
+We aim to further our goals by actively developing the following features in our upcoming updates:
+1. Copy and paste equations by pressing 1 button.
+2. Search through math problems you have saved.
+3. Generate practice tests from math problems in your library.
+
+
+![ScreenShot](https://i.imgur.com/7rLxAHYl.png)
+
+![ScreenShot](https://i.imgur.com/OWFDFz2l.png)
+
+![ScreenShot](https://i.imgur.com/dMlbVosl.png)
+
+![ScreenShot](https://i.imgur.com/6iM16Izl.png)
+
+# Technology and Process
+
+I developed custom interface with React Native Camera enabling micro-measurements with > 90% accuracy.
+
+I architected a Node.js backend with Mathpix and KaTeX APIs to convert 800+ raw image data objects to rendered html.
