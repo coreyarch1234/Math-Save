@@ -16,6 +16,8 @@ import ProblemInfo from './problem-info';
 import ProblemView from './problem-view';
 
 
+
+
 export default class Problem extends Component {
     static navigationOptions = {
         title: 'Add Detail',
@@ -30,7 +32,7 @@ export default class Problem extends Component {
         super(props);
         this.state = {
             title: null,
-            topic: null
+            topic: null,
         }
         this.latex = this.props.navigation.state.params.latex; //contains the latex
 

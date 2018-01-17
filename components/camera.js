@@ -128,7 +128,6 @@ export default class CameraScreen extends Component<{}> {
                  })
 
              }).then(response => response.json())
-
              .then((responseJson) => {
 
                  // Turn off spinner before navigate to next
@@ -156,7 +155,57 @@ export default class CameraScreen extends Component<{}> {
         }).catch(err => console.error(err));
     }
 
-    // {this.showErrorMessage()}
+    // loadingOrCamera(){
+    //     if (this.state.didTakePhoto){
+    //         return (
+    //              <Text>Loading...</Text>
+    //         )
+    //     }else{
+    //         return (
+               //  <Camera
+               //     captureTarget={Camera.constants.CaptureTarget.memory}
+               //     ref={(cam) => {
+               //       this.camera = cam;
+               //     }}
+               //     style={styles.preview}
+               //     aspect={Camera.constants.Aspect.fill}>
+               //     <TouchableHighlight onPress={this.takePicture.bind(this)}
+               //     underlayColor='rgba(0,0,0,0.1)'
+               //     style={{backgroundColor: 'rgba(0,0,0,0.0)'}}
+               //     >
+               //        <Image
+               //            source={require('../images/circle3.png')}
+               //            style={[styles.capture]}
+               //        />
+               //    </TouchableHighlight>
+               // </Camera>
+    //         )
+    //     }
+    // }
+
+    loadingOrCamera(){
+        if (this.state.didTakePhoto){
+            return (
+                <View style={{ flex: 1 }}>
+                    <Spinner visible={this.state.visible} textContent={"Loading..."} textStyle={{color: '#FFF'}} />
+                </View>
+            )
+        }else{
+            return (
+                <TouchableHighlight onPress={this.takePicture.bind(this)}
+                    underlayColor='rgba(0,0,0,0.1)'
+                    style={{backgroundColor: 'rgba(0,0,0,0.0)'}}
+                    >
+                    <View style={{width: 60, height: 60,}}>
+                        <Icon
+                            name='camera'
+                            style={{backgroundColor: 'green'}}
+                         />
+                    </View>
+                 </TouchableHighlight>
+            )
+        }
+    }
 
     render() {
         return (
@@ -179,6 +228,8 @@ export default class CameraScreen extends Component<{}> {
                     />
                 </TouchableHighlight>
              </Camera>
+
+
           </View>
         );
     }
