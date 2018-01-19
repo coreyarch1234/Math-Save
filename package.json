@@ -21,6 +21,7 @@
     "react-native-loading-spinner-overlay": "^0.5.2",
     "react-native-native-env": "0.0.4",
     "react-native-render-html": "^3.5.0",
+    "react-native-spinkit": "^1.1.1",
     "react-native-vector-icons": "^4.4.2",
     "react-navigation": "^1.0.0-beta.15"
   },

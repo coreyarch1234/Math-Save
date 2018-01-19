@@ -19,7 +19,10 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 
 import { Icon } from 'react-native-elements';
 
-import Spinner from 'react-native-loading-spinner-overlay';
+// import Spinner from 'react-native-loading-spinner-overlay';
+
+import Spinner from 'react-native-spinkit';
+
 
 import keys from '../keys.js';
 const api_id = keys.api_id;
@@ -74,12 +77,12 @@ export default class CameraScreen extends Component<{}> {
         console.log('LOADING TOGGLE HAS BEEN REACHED');
         this.setState({visible: !visible});
     }
-
+// <Spinner style={{marginTop: 50}} isVisible={this.state.visible} size={100} type={'CircleFlip'} color={'red'}/>
     loadingDisplay() {
         if (this.state.visible) {
             return (
                 <View style= {{height: 30}}>
-                   <Spinner visible={this.state.visible} textContent={"Processing..."} textStyle={{color: '#6c6cb2', fontSize: 16, color: 'white', fontFamily:'Montserrat-Medium'}} />
+                    <Spinner style={{marginTop: 50}} isVisible={this.state.visible} size={100} type={'CircleFlip'} color={'red'}/>
                 </View>
             )
         }
@@ -153,58 +156,6 @@ export default class CameraScreen extends Component<{}> {
              }).catch(err => console.error(err));
 
         }).catch(err => console.error(err));
-    }
-
-    // loadingOrCamera(){
-    //     if (this.state.didTakePhoto){
-    //         return (
-    //              <Text>Loading...</Text>
-    //         )
-    //     }else{
-    //         return (
-               //  <Camera
-               //     captureTarget={Camera.constants.CaptureTarget.memory}
-               //     ref={(cam) => {
-               //       this.camera = cam;
-               //     }}
-               //     style={styles.preview}
-               //     aspect={Camera.constants.Aspect.fill}>
-               //     <TouchableHighlight onPress={this.takePicture.bind(this)}
-               //     underlayColor='rgba(0,0,0,0.1)'
-               //     style={{backgroundColor: 'rgba(0,0,0,0.0)'}}
-               //     >
-               //        <Image
-               //            source={require('../images/circle3.png')}
-               //            style={[styles.capture]}
-               //        />
-               //    </TouchableHighlight>
-               // </Camera>
-    //         )
-    //     }
-    // }
-
-    loadingOrCamera(){
-        if (this.state.didTakePhoto){
-            return (
-                <View style={{ flex: 1 }}>
-                    <Spinner visible={this.state.visible} textContent={"Loading..."} textStyle={{color: '#FFF'}} />
-                </View>
-            )
-        }else{
-            return (
-                <TouchableHighlight onPress={this.takePicture.bind(this)}
-                    underlayColor='rgba(0,0,0,0.1)'
-                    style={{backgroundColor: 'rgba(0,0,0,0.0)'}}
-                    >
-                    <View style={{width: 60, height: 60,}}>
-                        <Icon
-                            name='camera'
-                            style={{backgroundColor: 'green'}}
-                         />
-                    </View>
-                 </TouchableHighlight>
-            )
-        }
     }
 
     render() {

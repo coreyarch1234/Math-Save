@@ -58,7 +58,7 @@ export default class Problem extends Component {
              style={styles.containerHome}>
                 <View style={{width: '100%'}}>
                     <ProblemInfo
-                        onSubmit = {(title, topic) => {
+                        onSubmit = {(title, topic, callback) => {
                             this.setState({title: title, topic: topic}, function() {
                                 //make api call to save to mongo
                                 //make axios request to the endpoints. on success, navigate to math view
@@ -81,6 +81,7 @@ export default class Problem extends Component {
                                 })
                                 }).then(response => response.json())
                                 .then((responseJson) => {
+                                    callback();
 
                                     //SAVE TO LOCAL STORAGE THEN NAVIGATE
                                     var problem = {

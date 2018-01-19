@@ -29,8 +29,9 @@ export default class ProblemView extends Component {
     constructor(props){
         super(props);
         this.state = {
-
+            refresh: false
         }
+        console.log('PROBLEM VIEW HAS BEEN REACHED');
 
         this.move = this.props.navigation;
 
@@ -38,6 +39,13 @@ export default class ProblemView extends Component {
         this.title = this.props.navigation.state.params.title;
         this.topic = this.props.navigation.state.params.topic;
     }
+
+    // componentDidMount(){
+    //     var refresh = this.state.refresh;
+    //     console.log('REFRESH WAS ACTIVATED');
+    //     this.setState({refresh: refresh});
+    // }
+
 
     render() {
         return (
