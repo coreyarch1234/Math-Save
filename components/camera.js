@@ -79,19 +79,13 @@ export default class CameraScreen extends Component<{}> {
         if (this.state.visible) {
             return (
                 <View>
-                    <Spinner style={styles.spinner} isVisible={this.state.visible} size={60} type={'Bounce'} color={'#6c6cb2'}/>
+                    <Spinner style={styles.spinner} isVisible={this.state.visible} size={75} type={'Wave'} color={'white'}/>
                 </View>
             )
         }else{
             return (
-                <View style={styles.spinner}>
-                    <Icon
-                      name={'circle-outline'}
-                      type='material-community'
-                      color={'#6c6cb2'}
-                      size={60}
-                      underlayColor="transparent"
-                    />
+                <View>
+                    <Spinner style={styles.spinner} isVisible={this.state.visible} size={75} type={'Wave'} color={'white'}/>
                 </View>
             )
         }
@@ -162,8 +156,8 @@ export default class CameraScreen extends Component<{}> {
     render() {
         return (
           <View style={styles.container}>
-              <View style= {{height: 30}}>
-                 <Text style = {{fontSize: 12, color: 'white', fontFamily:'Montserrat-Medium', paddingTop: 8}}>Focus your camera and take a picture!</Text>
+              <View style= {{height: 40}}>
+                 <Text style = {{fontSize: 16, color: 'white', fontFamily:'Montserrat-Medium', paddingTop: 12}}>Tap to take a picture!</Text>
               </View>
               <Camera
                  captureTarget={Camera.constants.CaptureTarget.memory}
@@ -174,9 +168,18 @@ export default class CameraScreen extends Component<{}> {
                  aspect={Camera.constants.Aspect.fill}>
                  <TouchableHighlight onPress={this.takePicture.bind(this)}
                  underlayColor='rgba(0,0,0,0.1)'
-                 style={{backgroundColor: 'rgba(0,0,0,0.0)', bottom: 50}}
+                 style={{backgroundColor: 'rgba(0,0,0,0.0)', bottom: 50, position: 'relative'}}
                  >
-                   {this.loadingDisplay()}
+                   <View style={{alignSelf: 'center', justifyContent: 'center'}}>
+                      {this.loadingDisplay()}
+                       <Icon
+                         name={'circle-outline'}
+                         type='material-community'
+                         color={'#6c6cb2'}
+                         size={50}
+                         underlayColor="transparent"
+                       />
+                   </View>
                 </TouchableHighlight>
              </Camera>
 
@@ -221,6 +224,8 @@ const styles = StyleSheet.create({
         borderColor: "#fff",
     },
     spinner: {
+        position: 'absolute',
+        bottom: 80,
         alignSelf: 'center',
         justifyContent: 'center'
     }
