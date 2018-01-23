@@ -29,8 +29,8 @@ export default class ProblemInfo extends React.Component {
     loadingDisplay() {
         if (this.state.visible) {
             return (
-                <View style= {{height: 50}}>
-                   <Spinner style={{marginTop: 10, alignSelf: 'center', justifyContent: 'center'}} isVisible={this.state.visible} size={50} type={'Wave'} color={'#6c6cb2'}/>
+                <View style= {{height: 60}}>
+                   <Spinner style={styles.spinner} isVisible={this.state.visible} size={50} type={'Wave'} color={'#6c6cb2'}/>
                 </View>
             )
         }
@@ -108,5 +108,10 @@ const styles = {
         top: 25,
         alignSelf: 'center',
         justifyContent: 'center'
+  },
+  spinner: {
+      marginTop: 25,
+      alignSelf: 'center',
+      justifyContent: 'center'
   }
 }
