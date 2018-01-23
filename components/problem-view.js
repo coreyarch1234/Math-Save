@@ -49,7 +49,6 @@ export default class ProblemView extends Component {
 
     render() {
         return (
-
             <View style={styles.containerHome}>
                 <WebView
                     source={{html: layoutHTML(this.title, this.topic, this.renderedLatex)}}

@@ -4,8 +4,6 @@ import { FormLabel, FormInput } from 'react-native-elements'
 
 import Button from 'apsl-react-native-button';
 
-// import Spinner from 'react-native-loading-spinner-overlay';
-
 import Spinner from 'react-native-spinkit';
 
 export default class ProblemInfo extends React.Component {
@@ -13,8 +11,8 @@ export default class ProblemInfo extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            title: '',
-            topic: '',
+            title: 'Fill Me In',
+            topic: 'Fill Me In',
             visible: false
         }
     }
@@ -25,7 +23,6 @@ export default class ProblemInfo extends React.Component {
         console.log('LOADING TOGGLE HAS BEEN REACHED');
         this.setState({visible: !visible});
     }
-    // <Spinner visible={this.state.visible} textContent={"Thinking..."} textStyle={{color: '#6c6cb2', fontSize: 16, color: 'black', fontFamily:'Montserrat-Medium'}} />
     loadingDisplay() {
         if (this.state.visible) {
             return (
@@ -42,7 +39,6 @@ export default class ProblemInfo extends React.Component {
                     this.loadingToggle();
                     this.props.onSubmit(this.state.title, this.state.topic, function(){
                         console.log('CALLBACK HAS BEEN REACHED');
-                        // this.loadingToggle();
                     });
                 }}>
                 <Text style={styles.buttonText}>Save</Text>
@@ -110,8 +106,8 @@ const styles = {
         justifyContent: 'center'
   },
   spinner: {
-      marginTop: 25,
-      alignSelf: 'center',
-      justifyContent: 'center'
+        marginTop: 25,
+        alignSelf: 'center',
+        justifyContent: 'center'
   }
 }

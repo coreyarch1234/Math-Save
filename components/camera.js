@@ -19,8 +19,6 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 
 import { Icon } from 'react-native-elements';
 
-// import Spinner from 'react-native-loading-spinner-overlay';
-
 import Spinner from 'react-native-spinkit';
 
 
@@ -77,21 +75,26 @@ export default class CameraScreen extends Component<{}> {
         console.log('LOADING TOGGLE HAS BEEN REACHED');
         this.setState({visible: !visible});
     }
-// <Spinner style={{marginTop: 50}} isVisible={this.state.visible} size={100} type={'CircleFlip'} color={'red'}/>
     loadingDisplay() {
         if (this.state.visible) {
             return (
-                <View style= {{height: 30}}>
-                    <Spinner style={{marginTop: 50}} isVisible={this.state.visible} size={100} type={'CircleFlip'} color={'red'}/>
+                <View>
+                    <Spinner style={styles.spinner} isVisible={this.state.visible} size={60} type={'Bounce'} color={'#6c6cb2'}/>
+                </View>
+            )
+        }else{
+            return (
+                <View style={styles.spinner}>
+                    <Icon
+                      name={'circle-outline'}
+                      type='material-community'
+                      color={'#6c6cb2'}
+                      size={60}
+                      underlayColor="transparent"
+                    />
                 </View>
             )
         }
-        return (
-            <View style= {{height: 30}}>
-               <Text style = {{fontSize: 12, color: 'white', fontFamily:'Montserrat-Medium', paddingTop: 8}}>Focus your camera and take a picture!</Text>
-            </View>
-        )
-
     }
 
     takePicture() {
@@ -111,8 +114,6 @@ export default class CameraScreen extends Component<{}> {
             return  RNFS.readFile(response.uri.substring(7), "base64")
 
         }).then((res) => {
-            // show spinner
-            // this.loadingToggle();
 
             fetch('https://api.mathpix.com/v3/latex', {
                  method: 'POST',
@@ -161,7 +162,9 @@ export default class CameraScreen extends Component<{}> {
     render() {
         return (
           <View style={styles.container}>
-              {this.loadingDisplay()}
+              <View style= {{height: 30}}>
+                 <Text style = {{fontSize: 12, color: 'white', fontFamily:'Montserrat-Medium', paddingTop: 8}}>Focus your camera and take a picture!</Text>
+              </View>
               <Camera
                  captureTarget={Camera.constants.CaptureTarget.memory}
                  ref={(cam) => {
@@ -171,12 +174,9 @@ export default class CameraScreen extends Component<{}> {
                  aspect={Camera.constants.Aspect.fill}>
                  <TouchableHighlight onPress={this.takePicture.bind(this)}
                  underlayColor='rgba(0,0,0,0.1)'
-                 style={{backgroundColor: 'rgba(0,0,0,0.0)'}}
+                 style={{backgroundColor: 'rgba(0,0,0,0.0)', bottom: 50}}
                  >
-                    <Image
-                        source={require('../images/circle3.png')}
-                        style={[styles.capture]}
-                    />
+                   {this.loadingDisplay()}
                 </TouchableHighlight>
              </Camera>
 
@@ -219,5 +219,9 @@ const styles = StyleSheet.create({
         top: (height - viewHeight) * 0.4,
         borderWidth: 2,
         borderColor: "#fff",
+    },
+    spinner: {
+        alignSelf: 'center',
+        justifyContent: 'center'
     }
 });

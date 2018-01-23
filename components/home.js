@@ -27,10 +27,6 @@ export default class Home extends Component {
         console.log(this.move.navigate);
 
     }
-    // <Image
-    //      style={styles.welcomeImage}
-    //      source={require('../images/home.png')}
-    // />
     render() {
         return(
             <View style={styles.welcomeView}>
@@ -55,18 +51,6 @@ export default class Home extends Component {
     }
 }
 
-// <Button
-//   style={styles.button}
-//   onPress={() =>  this.move.navigate('ProblemList')}
-//   title="GET STARTED"
-// />
-
-// <Button
-//   style={styles.button}
-//   onPress={() =>  console.log('This will generate a random problem')}
-//   title="Random Problem"
-// />
-
 const styles = StyleSheet.create({
     welcomeView: {
       flex: 1,
@@ -87,7 +71,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     welcomeMessageContainer: {
-        // backgroundColor: 'red',
         position: 'absolute',
         marginTop: '123%',
         padding: '5%',
