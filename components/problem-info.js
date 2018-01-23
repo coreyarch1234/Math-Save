@@ -57,7 +57,8 @@ export default class ProblemInfo extends React.Component {
             <View>
                 <View style={styles.title}>
                     <FormLabel>Subject (Ex: Algebra, Calculus)</FormLabel>
-                    <FormInput onChangeText={(title) => {
+                    <FormInput
+                    onChangeText={(title) => {
                         this.setState({title: title});
                         console.log('title is being edited: ' + title);
                     }}/>

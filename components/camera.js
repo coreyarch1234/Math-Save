@@ -19,7 +19,9 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 
 import { Icon } from 'react-native-elements';
 
-import Spinner from 'react-native-spinkit';
+// import Spinner from 'react-native-spinkit';
+
+import Spinner from 'react-native-loading-spinner-overlay';
 
 
 import keys from '../keys.js';
@@ -78,15 +80,7 @@ export default class CameraScreen extends Component<{}> {
     loadingDisplay() {
         if (this.state.visible) {
             return (
-                <View>
-                    <Spinner style={styles.spinner} isVisible={this.state.visible} size={75} type={'Wave'} color={'white'}/>
-                </View>
-            )
-        }else{
-            return (
-                <View>
-                    <Spinner style={styles.spinner} isVisible={this.state.visible} size={75} type={'Wave'} color={'white'}/>
-                </View>
+                 <Spinner visible={this.state.visible} textContent={"Processing..."} textStyle={{color: '#FFF', fontFamily:'Montserrat-Medium', paddingTop: 12, fontSize: 16}} />
             )
         }
     }
@@ -128,12 +122,15 @@ export default class CameraScreen extends Component<{}> {
              }).then(response => response.json())
              .then((responseJson) => {
 
-                 // Turn off spinner before navigate to next
-                 this.loadingToggle();
+                 // // Turn off spinner before navigate to next
+                 // this.loadingToggle();
 
                  if (responseJson.latex == ''){
+                     this.loadingToggle();
                      return
                  }else{
+                     // Turn off spinner before navigate to next
+                     this.loadingToggle();
                      var latex = responseJson.latex;
 
                      //change current latex
@@ -156,6 +153,7 @@ export default class CameraScreen extends Component<{}> {
     render() {
         return (
           <View style={styles.container}>
+              {this.loadingDisplay()}
               <View style= {{height: 40}}>
                  <Text style = {{fontSize: 16, color: 'white', fontFamily:'Montserrat-Medium', paddingTop: 12}}>Tap to take a picture!</Text>
               </View>
@@ -171,7 +169,6 @@ export default class CameraScreen extends Component<{}> {
                  style={{backgroundColor: 'rgba(0,0,0,0.0)', bottom: 50, position: 'relative'}}
                  >
                    <View style={{alignSelf: 'center', justifyContent: 'center'}}>
-                      {this.loadingDisplay()}
                        <Icon
                          name={'circle-outline'}
                          type='material-community'
