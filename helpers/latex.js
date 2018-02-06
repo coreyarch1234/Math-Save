@@ -1,6 +1,6 @@
 module.exports = (title, topic, latex) => {
-    return (
-        `<!DOCTYPE html>
+  return (
+    `<!DOCTYPE html>
     <html>
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,5 +68,5 @@ module.exports = (title, topic, latex) => {
 
 
     </html>`
-    )
-}
+  );
+};
