@@ -1,3 +1,4 @@
+// HTML for Webview for digital display of latex
 module.exports = (title, topic, latex) => {
   return (
     `<!DOCTYPE html>
@@ -59,7 +60,6 @@ module.exports = (title, topic, latex) => {
                 <h1 id='title'>
                     ${title}
                  </h1>
-
                  <div id='latexElement'>
                     ${latex}
                 </div>

@@ -1,3 +1,4 @@
+// Show splash page of app and button to go to empty library (get started)
 import React, { Component } from 'react';
 import {
   Platform,
@@ -5,25 +6,20 @@ import {
   Text,
   View,
   Image,
-  // Button,
 } from 'react-native';
 
 import Button from 'apsl-react-native-button';
 
 export default class Home extends Component {
   static navigationOptions = {
-      title: 'Home',
-      tabBarVisible: false,
-      header: null,
-      headerBackTitleStyle: {color: '#6c6cb2'},
+    title: 'Home',
+    tabBarVisible: false,
+    header: null,
+    headerBackTitleStyle: {color: '#6c6cb2'},
   };
-
   constructor(props){
     super(props);
     this.move = this.props.navigation;
-    console.log('the navigation is home: ');
-    console.log(this.move.navigate);
-
   }
   render() {
     return(
@@ -55,7 +51,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white'
   },
   welcomeImageContainer: {
-    // backgroundColor: 'green',
     marginTop: '5%',
     marginBottom: '5%',
     position: 'absolute',

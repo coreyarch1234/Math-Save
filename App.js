@@ -10,20 +10,18 @@ import {
 } from 'react-native';
 
 import { TabNavigator, StackNavigator } from 'react-navigation';
-
 //Camera screen
 import CameraScreen from './components/camera';
-
+// List of Problems
 import ProblemListScreen from './components/problem-list';
-
+// Submission of Subject and Topic
 import Problem from './components/problem';
-
+//After save button, latex view
 import ProblemView from './components/problem-view';
-
-import HomeScreen from './components/home';
-
+// After tapping on problem cell
 import DetailView from './components/detail-view';
 
+import HomeScreen from './components/home';
 
 const CameraStack = StackNavigator({
   Camera: {screen: CameraScreen},
@@ -32,17 +30,14 @@ const CameraStack = StackNavigator({
 });
 
 const HomeStack = StackNavigator({
-
   Home: {screen: HomeScreen},
   ProblemList: {screen: ProblemListScreen},
   DetailScreen: {screen: DetailView},
-  // headerMode: {screen: HomeScreen},
-
 },{
-  headerMode: 'screen' // 这里必须设置成 screen
+  headerMode: 'screen'
 });
 
-//Tab navigator
+// Tab navigator to nest camera and home stack
 const MathTabs = TabNavigator({
   Home: {
     screen: HomeStack,
@@ -68,7 +63,6 @@ const MathTabs = TabNavigator({
         />
       )
     }
-
   },
 },
 {
@@ -97,6 +91,5 @@ const styles = {
 export default class App extends React.Component {
   render() {
     return <MathTabs />;
-
   }
 }

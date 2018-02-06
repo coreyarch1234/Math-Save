@@ -4,8 +4,6 @@ import { FormLabel, FormInput } from 'react-native-elements';
 
 import Button from 'apsl-react-native-button';
 
-import Spinner from 'react-native-spinkit';
-
 export default class ProblemInfo extends React.Component {
 
   constructor(props){
@@ -13,43 +11,7 @@ export default class ProblemInfo extends React.Component {
     this.state = {
       title: 'Fill Me In',
       topic: 'Fill Me In',
-      visible: false
     };
-  }
-
-  loadingToggle() {
-    var visible = this.state.visible;
-    console.log(`LOADING ON VALUE IS BEFORE ${visible}`);
-    console.log('LOADING TOGGLE HAS BEEN REACHED');
-    this.setState({visible: !visible});
-  }
-  loadingDisplay() {
-    if (this.state.visible) {
-      return (
-        <View style= {{height: 60}}>
-          <Spinner style={styles.spinner} isVisible={this.state.visible} size={50} type={'Wave'} color={'#6c6cb2'}/>
-        </View>
-      );
-    }
-    return (
-      <Button
-        style={styles.button}
-        textStyle={{fontSize: 18}}
-        onPress={() => {
-          this.loadingToggle();
-          this.props.onSubmit(this.state.title, this.state.topic, function(){
-            console.log('CALLBACK HAS BEEN REACHED');
-          });
-        }}>
-        <Text style={styles.buttonText}>Save</Text>
-      </Button>
-    );
-
-  }
-
-  componentWillUnmount() {
-    this.loadingToggle();
-    console.log('Will Unmount');
   }
 
   render() {
@@ -70,7 +32,16 @@ export default class ProblemInfo extends React.Component {
             console.log('topic is being edited: ' + topic);
           }}/>
         </View>
-        {this.loadingDisplay()}
+        <Button
+          style={styles.button}
+          textStyle={{fontSize: 18}}
+          onPress={() => {
+            this.props.onSubmit(this.state.title, this.state.topic, function(){
+              console.log('CALLBACK HAS BEEN REACHED');
+            });
+          }}>
+          <Text style={styles.buttonText}>Save</Text>
+        </Button>
       </View>
     );
   }
@@ -106,9 +77,4 @@ const styles = {
     alignSelf: 'center',
     justifyContent: 'center'
   },
-  spinner: {
-    marginTop: 25,
-    alignSelf: 'center',
-    justifyContent: 'center'
-  }
 };

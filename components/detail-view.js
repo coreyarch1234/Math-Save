@@ -1,3 +1,4 @@
+// rendered when user taps on problem view cell. Display rendered latex
 import React, { Component } from 'react';
 import {
   Platform,
@@ -13,14 +14,13 @@ import {
 import HTML from 'react-native-render-html';
 import layoutHTML from '../helpers/latex';
 
-
 export default class DetailView extends Component {
   static navigationOptions = {
-      title: 'Problem',
-      headerBackTitleStyle: {color: '#6c6cb2'},
-      headerStyle: { backgroundColor: '#fefefe' },
-      headerTintColor: '#6c6cb2',
-      headerTitleStyle: { color: '#484848', fontFamily: 'Montserrat-SemiBold' }
+    title: 'Problem',
+    headerBackTitleStyle: {color: '#6c6cb2'},
+    headerStyle: { backgroundColor: '#fefefe' },
+    headerTintColor: '#6c6cb2',
+    headerTitleStyle: { color: '#484848', fontFamily: 'Montserrat-SemiBold' }
   }
 
   constructor(props){
@@ -30,10 +30,6 @@ export default class DetailView extends Component {
     };
 
     this.move = this.props.navigation;
-    console.log('detail view data: ');
-    console.log(this.props);
-    console.log(this.props.navigation.state.params);
-
     this.title = this.props.navigation.state.params.title;
     this.topic = this.props.navigation.state.params.topic;
     this.renderedLatex = this.props.navigation.state.params.renderedLatex;

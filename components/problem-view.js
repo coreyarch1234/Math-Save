@@ -1,3 +1,5 @@
+// This is to display the digital rendered Latex
+// This will contain the buttons to return to the library or to take another picture 
 import React, { Component } from 'react';
 import {
   Platform,
@@ -15,26 +17,22 @@ import layoutHTML from '../helpers/latex';
 
 import Button from 'apsl-react-native-button';
 
-//next to do is the same for difficulty and topic. And in return setstate function, make heroku api call
 export default class ProblemView extends Component {
   static navigationOptions = {
-      title: 'Problem',
-      headerLeft: null,
-      headerBackTitleStyle: {color: '#6c6cb2'},
-      headerStyle: { backgroundColor: '#fefefe' },
-      headerTintColor: '#6c6cb2',
-      headerTitleStyle: { color: '#484848', fontFamily: 'Montserrat-SemiBold' }
+    title: 'Problem',
+    headerLeft: null,
+    headerBackTitleStyle: {color: '#6c6cb2'},
+    headerStyle: { backgroundColor: '#fefefe' },
+    headerTintColor: '#6c6cb2',
+    headerTitleStyle: { color: '#484848', fontFamily: 'Montserrat-SemiBold' }
   }
 
   constructor(props){
     super(props);
     this.state = {
       refresh: false
-    };
-    console.log('PROBLEM VIEW HAS BEEN REACHED');
-
+    }
     this.move = this.props.navigation;
-
     this.renderedLatex = this.props.navigation.state.params.renderedLatex; //contains the latex
     this.title = this.props.navigation.state.params.title;
     this.topic = this.props.navigation.state.params.topic;

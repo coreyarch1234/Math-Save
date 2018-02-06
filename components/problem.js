@@ -1,3 +1,6 @@
+// Rendered after picture is take
+// User enters problem info and saves data to local storage as well as to database
+// Navigate to Problem View afterwards
 import React, { Component } from 'react';
 import {
   Platform,
@@ -11,21 +14,17 @@ import {
 
 //Problem info
 import ProblemInfo from './problem-info';
-
 //Problem View
 import ProblemView from './problem-view';
 
-
-
-
 export default class Problem extends Component {
   static navigationOptions = {
-      title: 'Add Detail',
-      headerLeft: null,
-      headerBackTitleStyle: {color: '#6c6cb2'},
-      headerStyle: { backgroundColor: '#fefefe' },
-      headerTintColor: '#6c6cb2',
-      headerTitleStyle: { color: '#484848', fontFamily: 'Montserrat-SemiBold' }
+    title: 'Add Detail',
+    headerLeft: null,
+    headerBackTitleStyle: {color: '#6c6cb2'},
+    headerStyle: { backgroundColor: '#fefefe' },
+    headerTintColor: '#6c6cb2',
+    headerTitleStyle: { color: '#484848', fontFamily: 'Montserrat-SemiBold' }
   }
 
   constructor(props){
@@ -35,14 +34,12 @@ export default class Problem extends Component {
       topic: null,
     };
     this.latex = this.props.navigation.state.params.latex; //contains the latex
-
     this.move = this.props.navigation; //to send html in navigate
   }
-
+  // Local storage holds array of problem objects that contain, title, latex, topic, etc
   saveDataToLocal(problem) {
     AsyncStorage.getItem('problemArray').then((value) => {
       let valueOfArray = (value === null ? null : JSON.parse(value));
-      console.log(`THE VALUE OF THE LOCAL STORAGE PROBLEM ARRAY IS: ${valueOfArray}`);
       if (valueOfArray === null){
         AsyncStorage.setItem('problemArray', JSON.stringify([problem]));
       }else{
@@ -62,12 +59,6 @@ export default class Problem extends Component {
               this.setState({title: title, topic: topic}, function() {
                 //make api call to save to mongo
                 //make axios request to the endpoints. on success, navigate to math view
-                console.log('successfuly received title to be saved: ');
-                console.log(this.state.title);
-                console.log('successfuly received topic to be saved: ');
-                console.log(this.state.topic);
-                console.log('successfuly received latex to be saved: ');
-                console.log(this.latex);
                 fetch('https://ancient-atoll-47438.herokuapp.com/latex', {
                   method: 'POST',
                   headers: {
@@ -82,7 +73,6 @@ export default class Problem extends Component {
                 }).then(response => response.json())
                   .then((responseJson) => {
                     callback();
-
                     //SAVE TO LOCAL STORAGE THEN NAVIGATE
                     var problem = {
                       title: responseJson.problem.title,
@@ -90,10 +80,8 @@ export default class Problem extends Component {
                       latex: this.latex,
                       renderedLatex: responseJson.renderedLatex
                     };
+                    // Save to local storage before navigating to ProblemView 
                     this.saveDataToLocal(problem);
-
-                    console.log('THE RESPONSE FROM THE SERVER: ');
-                    console.log(responseJson);
                     this.move.navigate('ProblemView', {
                       title: responseJson.problem.title,
                       topic: responseJson.problem.topic,
