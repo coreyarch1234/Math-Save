@@ -31,8 +31,8 @@ export default class Home extends Component {
           />
         </View>
         <View style={styles.welcomeMessageContainer} >
-          <Text style={styles.title}>Welcome to Tangent!</Text>
-          <Text style={styles.subtitle}>Our app allows you to convert hand-written math equations to digital text.</Text>
+          <Text style={styles.title}>Tangent</Text>
+          <Text style={styles.subtitle}>Convert hand-written math equations to digital text.</Text>
           <Button
             style={styles.button}
             textStyle={{fontSize: 18}}

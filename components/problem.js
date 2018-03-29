@@ -72,7 +72,6 @@ export default class Problem extends Component {
                   })
                 }).then(response => response.json())
                   .then((responseJson) => {
-                    callback();
                     //SAVE TO LOCAL STORAGE THEN NAVIGATE
                     var problem = {
                       title: responseJson.problem.title,
@@ -80,7 +79,7 @@ export default class Problem extends Component {
                       latex: this.latex,
                       renderedLatex: responseJson.renderedLatex
                     };
-                    // Save to local storage before navigating to ProblemView 
+                    // Save to local storage before navigating to ProblemView
                     this.saveDataToLocal(problem);
                     this.move.navigate('ProblemView', {
                       title: responseJson.problem.title,

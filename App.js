@@ -6,7 +6,6 @@ import {
   Button,
   View,
   Image
-
 } from 'react-native';
 
 import { TabNavigator, StackNavigator } from 'react-navigation';

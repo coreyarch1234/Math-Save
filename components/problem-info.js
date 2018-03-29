@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, KeyboardAvoidingVi
 import { FormLabel, FormInput } from 'react-native-elements';
 
 import Button from 'apsl-react-native-button';
+import Spinner from 'react-native-spinkit';
 
 export default class ProblemInfo extends React.Component {
 
@@ -11,7 +12,25 @@ export default class ProblemInfo extends React.Component {
     this.state = {
       title: 'Fill Me In',
       topic: 'Fill Me In',
+      isVisible: false
     };
+  }
+
+  changeVisibility() {
+    this.setState({ isVisible: !this.state.isVisible });
+  }
+
+  // show spinner or text
+  loadOrText() {
+    if (this.state.isVisible) {
+      return (
+         <Spinner style={styles.buttonText} isVisible={this.state.isVisible} size={100} type={'Wave'} color={'#6c6cb2'}/>
+      )
+    }else{
+      return (
+        <Text style={styles.buttonText}>Save</Text>
+      )
+    }
   }
 
   render() {
@@ -36,17 +55,16 @@ export default class ProblemInfo extends React.Component {
           style={styles.button}
           textStyle={{fontSize: 18}}
           onPress={() => {
-            this.props.onSubmit(this.state.title, this.state.topic, function(){
-              console.log('CALLBACK HAS BEEN REACHED');
-            });
+            this.changeVisibility();
+            this.props.onSubmit(this.state.title, this.state.topic);
           }}>
-          <Text style={styles.buttonText}>Save</Text>
+          {this.loadOrText()}
         </Button>
       </View>
     );
   }
 }
-
+// <Text style={styles.buttonText}>Save</Text>
 
 const styles = {
   detailsContainer: {
@@ -63,6 +81,9 @@ const styles = {
     fontFamily: 'Montserrat-SemiBold',
     alignSelf: 'center',
     textAlign: 'center'
+  },
+  spinner: {
+    marginTop: 20,
   },
   button: {
     marginTop: 20,
