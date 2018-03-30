@@ -96,13 +96,41 @@ export default class CameraScreen extends Component {
           }else{
             // If successful return of Latex, set new latex state and navigate to Problem View
             var latex = responseJson.latex;
-            //change current latex
-            this.setState({currentLatex: latex, errorMessage: false}, function(){
-              this.move.navigate('Problem', {latex: this.state.currentLatex});
-            });
-            return responseJson;
+            console.log('successfully received latex');
+            console.log(latex);
+            return latex
+            // //change current latex
+            // this.setState({currentLatex: latex, errorMessage: false}, function(){
+            //   this.move.navigate('Problem', {latex: this.state.currentLatex});
+            // });
+            // return responseJson;
           }
-        }).catch(err => console.error(err));
+        }).then((latex) => {
+          console.log('making heroku call');
+          // get rendered hmtl string from server
+          fetch('https://ancient-atoll-47438.herokuapp.com/latex', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              title: 'something',
+              topic: 'something',
+              latex: latex
+            })
+          }).then(response => response.json())
+            .then((responseJson) => {
+              console.log('received renderedLatex from heroku');
+              console.log(responseJson.renderedLatex);
+              this.move.navigate('ProblemView', {
+                latex: responseJson.problem.latex,
+                renderedLatex: responseJson.renderedLatex,
+                isProblemSaved: false
+              });
+            }).catch(err => console.error(err));
+        })
+        .catch(err => console.error(err));
     }).catch(err => console.error(err));
   }
 

@@ -12,7 +12,9 @@ export default class ProblemInfo extends React.Component {
     this.state = {
       title: 'Fill Me In',
       topic: 'Fill Me In',
-      isVisible: false
+      isVisible: false,
+      titleInput: '',
+      topicInput: ''
     };
   }
 
@@ -39,6 +41,7 @@ export default class ProblemInfo extends React.Component {
         <View style={styles.title}>
           <FormLabel>Subject (Ex: Algebra, Calculus)</FormLabel>
           <FormInput
+            ref={input => this.titleInput = input}
             onChangeText={(title) => {
               this.setState({title: title});
               console.log('title is being edited: ' + title);
@@ -46,7 +49,9 @@ export default class ProblemInfo extends React.Component {
         </View>
         <View style={styles.topic}>
           <FormLabel>Topic (Ex: Derivatives, Integrals)</FormLabel>
-          <FormInput onChangeText={(topic) => {
+          <FormInput
+            ref={input => this.topicInput = input}
+            onChangeText={(topic) => {
             this.setState({topic: topic});
             console.log('topic is being edited: ' + topic);
           }}/>
@@ -55,10 +60,15 @@ export default class ProblemInfo extends React.Component {
           style={styles.button}
           textStyle={{fontSize: 18}}
           onPress={() => {
-            this.changeVisibility();
-            this.props.onSubmit(this.state.title, this.state.topic);
+            // this.changeVisibility();
+            this.props.onSubmit(this.state.title, this.state.topic, () => {
+              console.log('RESETTING TITLE AND TOPIC');
+              this.titleInput.clearText();
+              this.topicInput.clearText();
+              // this.setState({title: 'Fill Me In', topic: 'Fill Me In'});
+            });
           }}>
-          {this.loadOrText()}
+          <Text style={styles.buttonText}>Save</Text>
         </Button>
       </View>
     );

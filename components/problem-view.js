@@ -1,5 +1,5 @@
 // This is to display the digital rendered Latex
-// This will contain the buttons to return to the library or to take another picture 
+// This will contain the buttons to return to the library or to take another picture
 import React, { Component } from 'react';
 import {
   Platform,
@@ -34,32 +34,90 @@ export default class ProblemView extends Component {
     }
     this.move = this.props.navigation;
     this.renderedLatex = this.props.navigation.state.params.renderedLatex; //contains the latex
-    this.title = this.props.navigation.state.params.title;
-    this.topic = this.props.navigation.state.params.topic;
+    this.latex = this.props.navigation.state.params.latex;
+    this.isProblemSaved = this.props.navigation.state.params.isProblemSaved;
+    console.log(` IS PROBLEM SAVED IS: ${this.isProblemSaved}`);
+    console.log('THE LATEX IS: ');
+    console.log(this.latex);
+    // this.title = this.props.navigation.state.params.title;
+    // this.topic = this.props.navigation.state.params.topic;
   }
+
   render() {
     return (
       <View style={styles.containerHome}>
         <WebView
-          source={{html: layoutHTML(this.title, this.topic, this.renderedLatex)}}
+          source={{html: layoutHTML(this.renderedLatex)}}
           automaticallyAdjustContentInsets={true}
           style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height}}
         />
         <Button
           style={styles.libraryButton}
           textStyle={{fontSize: 18}}
-          onPress={() =>  this.move.navigate('ProblemList')}>
-          <Text style={styles.libraryButtonText}>Back to Library</Text>
+          onPress={() =>  this.move.navigate(this.isProblemSaved === true ? 'ProblemList' : 'Problem', {
+            latex: this.latex,
+            renderedLatex: this.renderedLatex
+          })}>
+          <Text style={styles.libraryButtonText}>{this.isProblemSaved === true ? 'Back to Library' : 'Add Information'}</Text>
         </Button>
         <Button
           style={styles.moreButton}
           textStyle={{fontSize: 18}}
           onPress={() =>  this.move.navigate('Camera')}>
-          <Text style={styles.moreButtonText}>Take Another Picture</Text>
+          <Text style={styles.moreButtonText}>{this.isProblemSaved === true ? 'Take Another Picture' : 'Redo'}</Text>
         </Button>
       </View>
-    );
+    )
   }
+  // render() {
+  //   return (
+  //     <View style={styles.containerHome}>
+  //       <WebView
+  //         source={{html: layoutHTML(this.renderedLatex)}}
+  //         automaticallyAdjustContentInsets={true}
+  //         style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height}}
+  //       />
+  //       <Button
+  //         style={styles.libraryButton}
+  //         textStyle={{fontSize: 18}}
+  //         onPress={() =>  this.move.navigate('Problem', {
+  //           latex: this.latex,
+  //           renderedLatex: this.renderedLatex
+  //         })}>
+  //         <Text style={styles.libraryButtonText}>Add Information</Text>
+  //       </Button>
+  //       <Button
+  //         style={styles.moreButton}
+  //         textStyle={{fontSize: 18}}
+  //         onPress={() =>  this.move.navigate('Camera')}>
+  //         <Text style={styles.moreButtonText}>Redo</Text>
+  //       </Button>
+  //     </View>
+  //   );
+  // }
+  // render() {
+  //   return (
+  //     <View style={styles.containerHome}>
+  //       <WebView
+  //         source={{html: layoutHTML(this.renderedLatex)}}
+  //         automaticallyAdjustContentInsets={true}
+  //         style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height}}
+  //       />
+  //       <Button
+  //         style={styles.libraryButton}
+  //         textStyle={{fontSize: 18}}
+  //         onPress={() =>  this.move.navigate('ProblemList')}>
+  //         <Text style={styles.libraryButtonText}>Back to Library</Text>
+  //       </Button>
+  //       <Button
+  //         style={styles.moreButton}
+  //         textStyle={{fontSize: 18}}
+  //         onPress={() =>  this.move.navigate('Camera')}>
+  //         <Text style={styles.moreButtonText}>Take Another Picture</Text>
+  //       </Button>
+  //     </View>
+  //   );
+  // }
 }
 
 const styles = StyleSheet.create({

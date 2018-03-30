@@ -1,5 +1,5 @@
 // HTML for Webview for digital display of latex
-module.exports = (title, topic, latex) => {
+module.exports = (latex) => {
   return (
     `<!DOCTYPE html>
     <html>
@@ -55,10 +55,10 @@ module.exports = (title, topic, latex) => {
         <body>
             <div class= 'heading-container'>
                 <h2 id='topic'>
-                    ${topic}
+
                 </h2>
                 <h1 id='title'>
-                    ${title}
+                
                  </h1>
                  <div id='latexElement'>
                     ${latex}
